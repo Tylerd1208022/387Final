@@ -1,0 +1,22 @@
+/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/divider.sv {1 {vlog -work work -vopt -sv -stats=none /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/divider.sv
+Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
+-- Compiling module divider
+
+Top level modules:
+	divider
+
+} {} {}} /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/divider_tb.sv {1 {vlog -work work -vopt -sv -stats=none /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/divider_tb.sv
+Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
+-- Compiling module divider_tb
+
+Top level modules:
+	divider_tb
+
+} {} {}} /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/comparator.sv {1 {vlog -work work -vopt -sv -stats=none /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/comparator.sv
+Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
+-- Compiling module comparator
+
+Top level modules:
+	comparator
+
+} {} {}}
