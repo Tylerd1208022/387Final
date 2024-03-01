@@ -1,0 +1,72 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.01, Jan 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/ted4152/Winter24/FPGA/387Final/implmentation/sim
+T_opt
+!s110 1709319106
+V>Hzh]kze2Uz_P>5HdOA=a1
+04 6 4 work FIR_tb fast 0
+=1-a4bb6d3fef1e-65e223c2-13854-66f9b
+o-quiet -auto_acc_if_foreign -work work -L work +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2020.1;71
+vFIR
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1709319105
+!i10b 1
+!s100 E2Ff=Hde5ebUl`K=G:4KF3
+Z4 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I`_f7Ch7Vhk^WMQAL[UOjO2
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+w1709318907
+8../sv/FIR.sv
+F../sv/FIR.sv
+!i122 80
+L0 1 85
+Z6 OL;L;2020.1;71
+r1
+!s85 0
+31
+Z7 !s108 1709319105.000000
+!s107 ../sv/FIR.sv|
+!s90 -reportprogress|300|-work|work|../sv/FIR.sv|
+!i113 0
+Z8 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@f@i@r
+vFIR_tb
+R2
+R3
+!i10b 1
+!s100 WdSU4zE[P=edXK;4;<L0W2
+R4
+I]^X:Om^LH6azZNT3c=VMm2
+R5
+S1
+R0
+w1709319101
+8../sv/testFIR.sv
+F../sv/testFIR.sv
+!i122 81
+L0 3 42
+R6
+r1
+!s85 0
+31
+R7
+!s107 ../sv/testFIR.sv|
+!s90 -reportprogress|300|-work|work|../sv/testFIR.sv|
+!i113 0
+R8
+R1
+n@f@i@r_tb
