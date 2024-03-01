@@ -7,7 +7,7 @@ module demodulator#(
     input logic [DATA_WIDTH - 1 : 0]    x,
     input logic [DATA_WIDTH - 1 : 0]    y,
     input logic [DATA_WIDTH - 1 : 0]    gain,
-    output logic                         done,
+    output logic                        done,
     output logic [DATA_WIDTH - 1 : 0]   demod
 );
 
