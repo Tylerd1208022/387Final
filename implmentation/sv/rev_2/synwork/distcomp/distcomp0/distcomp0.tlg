@@ -1,0 +1,19 @@
+@N:: Applying property .distcompmodetop with value 1 on module FIR in library work
+@N:: Applying property .distcompnoprune with value 1 on module FIR in library work
+@N:: Applying property .noprune with value 1 on module FIR in library work
+Selecting top level module FIR
+@N: CG364 :"/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/FIR.sv":1:7:1:9|Synthesizing module FIR in library work.
+Running optimization stage 1 on FIR .......
+@W: CL207 :"/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/FIR.sv":35:8:35:11|All reachable assignments to done assign 1, register removed by optimization.
+Running optimization stage 2 on FIR .......
+@N: CL201 :"/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/FIR.sv":69:4:69:12|Trying to extract state machine for register state_s.
+Extracted state machine for register state_s
+State machine has 3 reachable states with original encodings of:
+   00
+   01
+   10
+
+For a summary of runtime and memory usage per design unit, please see file:
+==========================================================
+@L: /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_2/synwork//distcomp/distcomp0/distcomp0.rt.csv
+

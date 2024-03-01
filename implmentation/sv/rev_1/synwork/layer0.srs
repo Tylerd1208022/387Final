@@ -1,0 +1,107 @@
+%%% protect protected_file
+#
+#
+#
+# Created by Synplify Verilog HDL Compiler version comp2018q4p1, Build 004R from Synplicity, Inc.
+# Copyright (C) 1994-2018 Synopsys, Inc. This Synopsys software and all associated documentation are proprietary to Synopsys, Inc. and may only be used pursuant to the terms and conditions of a written license agreement with Synopsys, Inc. All other use, reproduction, modification, or distribution of the Synopsys software or the associated documentation is strictly prohibited.
+# Synthesis Netlist written on Fri Mar  1 13:00:30 2024
+#
+#
+#OPTIONS:"|-layerid|0|-orig_srs|/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/FIR_comp.srs|-prodtype|synplify_premier|-verification_mode|0|-infer_seqShift|-primux|-fixsmult|-dspmac|-nram|-divnmod|-continue_on_error|-nostructver|-I|/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/|-I|/vol/synopsys/fpga/O-2018.09-SP1/lib|-sysv|-devicelib|/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/altera.v|-devicelib|/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/cycloneive.v|-devicelib|/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/altera_mf.v|-devicelib|/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/altera_lpm.v|-devicelib|/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/altera_primitives.v|-encrypt|-pro|-distcompmode|-noobf|-auto_infer_blackbox|0|-proto|-ui|-fid2|-ram|-sharing|on|-ll|2000|-autosm|-D_MULTIPLE_FILE_COMPILATION_UNIT_|-fast_synthesis|0|-lib|work"
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/linux_a_64/c_ver":1543382462
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/altera.v":1543381811
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/cycloneive.v":1543381840
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/altera_mf.v":1543381839
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/altera_lpm.v":1543381839
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/altera_primitives.v":1543381839
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/vlog/hypermods.v":1543382268
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/vlog/umr_capim.v":1533714205
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/synip/hcei/zceistubs.v":1543381931
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/vlog/scemi_objects.v":1543382268
+#CUR:"/vol/synopsys/fpga/O-2018.09-SP1/lib/vlog/scemi_pipes.svh":1543382268
+#CUR:"/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/FIR.sv":1709319627
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/altera.v"; # file 0
+af .standard "sv";
+af .is_verilog 1;
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/cycloneive.v"; # file 1
+af .standard "sv";
+af .is_verilog 1;
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/altera_mf.v"; # file 2
+af .standard "sv";
+af .is_verilog 1;
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/altera_lpm.v"; # file 3
+af .standard "sv";
+af .is_verilog 1;
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/altera/quartus_prime181/altera_primitives.v"; # file 4
+af .standard "sv";
+af .is_verilog 1;
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/vlog/hypermods.v"; # file 5
+af .standard "sv";
+af .is_verilog 1;
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/vlog/umr_capim.v"; # file 6
+af .standard "sv";
+af .is_verilog 1;
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/synip/hcei/zceistubs.v"; # file 7
+af .standard "sv";
+af .is_verilog 1;
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/vlog/scemi_objects.v"; # file 8
+af .standard "sv";
+af .is_verilog 1;
+f "/vol/synopsys/fpga/O-2018.09-SP1/lib/vlog/scemi_pipes.svh"; # file 9
+af .standard "sv";
+af .is_verilog 1;
+f "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/FIR.sv"; # file 10
+af .standard "sv";
+af .is_verilog 1;
+@E
+@ 
+ftell;
+@E@MR@:4j4::(4R:gI	FsR)wQRsPCHoDF;P
+NRF3VsDlN_DOCDlMNCwR"Q;)"
+RNP#_$Mb#F#HCLD0RFb4N;
+PHR3#sPCHoDFR
+4;N3PRHP#_CDsHF4oR;P
+NRs3FHNohl"CRw"Q);P
+NRHFsoM_H#F0_VwR"Q;)"
+RNP3MDNosuNNRl#"uaq_zBmh7aR vBQqmaQhq_wB)amRpvza _u)Y_BBRp 7qqa_7WQa;]"
+RNP3ODFNNDus#NlRz"vpBa_Y Bp_zBmh;a"
+P
+NRuaq_zBmhUaR;P
+NRB7 QavqQ_mhwaqBm4)R;P
+NRpvza _u)Y_BBRp UN;
+PqR7aWq_Q]7aR;d.
+RNPvazp_BBYpB _mazhR
+4;N3PR#_$MNV00FNsl0x#HCaR"qBu_mazh=Rd.7Q BvQqamwh_qmBa).=dRpvza _u)Y_BB=p d7.Rq_aqWaQ7].=dRpvzaY_BB_p Bhmza.=dR
+";N3PR#_$MNV00FNsl0aR"qBu_mazh=77R vBQqmaQhq_wB)am=v7Rz_pau_ )BpYB R=77qqa_7WQa7]=RpvzaY_BB_p BhmzaR=7"N;
+PFR3sDHoHNLMl"CRI	Fs"N;
+PDR3Ns$CHj8R;P
+NR$3EbQCsMu#0Nv0EFO81FRbC")wQ"N;
+P#R30Dl0Hl#0C#lkNRoCjj3jjjjj;P
+NR03#lH0D#H00ljCR3jjjj;j.
+RNP3M#$_CPHI#ENObFlDbCGF#s0R
+4;
+@HR@:4j(n:d:c(:jDROFRO	OODF	
+;
+
+@HR@:4jUn:d:cU:jCRs#RC0sCC#0
+;
+
+@HR@:4jgn:d:cg:.CRMI07NN4rd:Rj9M7CINr0Ndj4:9
+;
+
+@HR@:4j4dj:nj:4:R64M7CINq0NPDNHHCLDRIMC7NN0qHPNDDHLC
+;
+
+@HR@:4j4d4:n4:4:Rdga1qur6.6:Rj9a1qur6.6:;j9
+RNH3M#$_Dlk0HH8lC_8O"DRr:d4ja9RqRu1r(j:9
+";N3HR#_$MHF#OlCbDGsbF0;R4
+RNH3M#$_sbF0b0$CN_lbaR"qru1jd9r49:j,qRau41r94rd:,j9Ruaq19r.r:d4jR9,a1qurrd9dj4:9a,Rqru1cd9r49:j,qRau61r94rd:,j9Ruaq19rnr:d4jR9,a1qurr(9dj4:9
+";
+@FR@:4j4d.:n.:4:Rc.8uF0srF8dj4:9
+R;
+@FR@:4j4dd:nd:4:Rdg8CFMR
+;
+
+@FR@:4j4dc:nc:4:RcdHsM_8M_CRC;
+; 
+@

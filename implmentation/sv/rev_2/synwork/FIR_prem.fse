@@ -1,0 +1,10 @@
+
+fsm_encoding {10694691} sequential
+
+fsm_state_encoding {10694691} shift {00}
+
+fsm_state_encoding {10694691} mult {01}
+
+fsm_state_encoding {10694691} doneCalc {10}
+
+fsm_registers {10694691} {state_s[1]}  {state_s[0]} 

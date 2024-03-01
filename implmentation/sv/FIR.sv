@@ -1,7 +1,7 @@
 module FIR #(
     parameter TAP_COUNT = 8,
     parameter DECIMATION_FACTOR = 1,
-    parameter MULT_PER_CYCLE = 4,
+    parameter MULT_PER_CYCLE = 8,
     parameter DATA_WIDTH = 32
 )(
     input logic                     clock,
