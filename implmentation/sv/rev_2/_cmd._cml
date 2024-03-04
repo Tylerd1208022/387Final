@@ -1,1 +1,0 @@
--distcompmode -link    -encrypt       -top work.FIR -osyn /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_2/synwork/FIR_comp.srs /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_2/synwork//distcomp/distcomp0/distcomp0.srs    
