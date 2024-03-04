@@ -4,8 +4,7 @@ module top_level #(
     input logic clock,                    
     input logic reset,                  
     input logic start,                    
-    input logic [DATA_WIDTH - 1 : 0] i_data,    
-    input logic [DATA_WIDTH - 1 : 0] q_data,   
+    input logic [DATA_WIDTH - 1 : 0] data_in,  
     input logic [DATA_WIDTH - 1 : 0] volume,    
     output logic [DATA_WIDTH - 1 : 0] left_audio, 
     output logic [DATA_WIDTH - 1 : 0] right_audio 
@@ -16,6 +15,121 @@ module top_level #(
     logic [DATA_WIDTH - 1 : 0] gain_left_out, gain_right_out;
     logic fir_cmplx_done, fir_demod_done, fir_mult_done, fir_add_done, fir_sub_done;
     logic demod_done, add_done, sub_done, gain_left_done, gain_right_done;
+    logic FIFO_In_wr_en, FIFO_In_Full, FIFO_In_rd_en, FIFO_In_DOut, FIFO_In_Empty;
+    logic FIFO_Demod_wr_en, FIFO_Demod_Full, FIFO_Demod_rd_en, FIFO_Demod_DOut, FIFO_Demod_Empty;
+    logic FIFO_Multiply_wr_en, FIFO_Multiply_Full, FIFO_Multiply_rd_en, FIFO_Multiply_DOut, FIFO_Multiply_Empty;
+    logic FIFO_Add_wr_en, FIFO_Add_Full, FIFO_Add_rd_en, FIFO_Add_DOut, FIFO_Add_Empty;
+    logic FIFO_Sub_wr_en, FIFO_Sub_Full, FIFO_Sub_rd_en, FIFO_Sub_DOut, FIFO_Sub_Empty;
+    logic FIFO_Left_wr_en, FIFO_Left_Full, FIFO_Left_rd_en, FIFO_Left_DOut, FIFO_Left_Empty;
+    logic FIFO_Right_wr_en, FIFO_Right_Full, FIFO_Right_rd_en, FIFO_Right_DOut, FIFO_Right_Empty;
+
+    // FIFO In
+fifo #(
+    .FIFO_BUFFER_SIZE(),
+    .FIFO_DATA_WIDTH()
+) fifo_in_inst (
+    .reset(reset),
+    .wr_clk(clock),
+    .wr_en(FIFO_In_wr_en),
+    .din(data_in),
+    .full(FIFO_In_Full),
+    .rd_clk(clock),
+    .rd_en(FIFO_In_rd_en),
+    .dout(FIFO_In_DOut),
+    .empty(FIFO_In_Empty)
+);    
+    // FIFO Demod
+fifo #(
+    .FIFO_BUFFER_SIZE(),
+    .FIFO_DATA_WIDTH()
+) fifo_demod_inst (
+    .reset(reset),
+    .wr_clk(clock),
+    .wr_en(FIFO_Demod_wr_en),
+    .din(), // the out signal from FIR Demod
+    .full(FIFO_Demod_Full),
+    .rd_clk(clock),
+    .rd_en(FIFO_Demod_rd_en),
+    .dout(FIFO_Demod_Out),
+    .empty(FIFO_Demod_Empty)
+); 
+    // FIFO Multiply
+fifo #(
+    .FIFO_BUFFER_SIZE(),
+    .FIFO_DATA_WIDTH()
+) fifo_mult_inst (
+    .reset(reset),
+    .wr_clk(clock),
+    .wr_en(FIFO_Mult_wr_en),
+    .din(),// the out signal from FIR multiply
+    .full(FIFO_Mult_Full),
+    .rd_clk(clock),
+    .rd_en(FIFO_Mult_rd_en),
+    .dout(FIFO_Mult_Out),
+    .empty(FIFO_Mult_Empty)
+); 
+    // FIFO Add
+fifo #(
+    .FIFO_BUFFER_SIZE(),
+    .FIFO_DATA_WIDTH()
+) fifo_add_inst (
+    .reset(reset),
+    .wr_clk(clock),
+    .wr_en(FIFO_Add_wr_en),
+    .din(), // the out signal from FIR Add
+    .full(FIFO_Add_Full),
+    .rd_clk(clock),
+    .rd_en(FIFO_Add_rd_en),
+    .dout(FIFO_Add_Out),
+    .empty(FIFO_Add_Empty)
+); 
+    // FIFO Sub
+fifo #(
+    .FIFO_BUFFER_SIZE(),
+    .FIFO_DATA_WIDTH()
+) fifo_sub_inst (
+    .reset(reset),
+    .wr_clk(clock),
+    .wr_en(FIFO_Sub_wr_en),
+    .din(), // the out signal from FIR Sub
+    .full(FIFO_Sub_Full),
+    .rd_clk(clock),
+    .rd_en(FIFO_Sub_rd_en),
+    .dout(FIFO_Sub_DOut),
+    .empty(FIFO_Sub_Empty)
+); 
+    // FIFO Out Left
+fifo #(
+    .FIFO_BUFFER_SIZE(),
+    .FIFO_DATA_WIDTH()
+) fifo_left_inst (
+    .reset(reset),
+    .wr_clk(clock),
+    .wr_en(FIFO_Left_wr_en),
+    .din(), // the out signal from IIR Add
+    .full(FIFO_Left_Full),
+    .rd_clk(clock),
+    .rd_en(FIFO_Left_rd_en),
+    .dout(FIFO_Left_DOut),
+    .empty(FIFO_Left_Empty)
+); 
+    // Fifo Out Right
+fifo #(
+    .FIFO_BUFFER_SIZE(),
+    .FIFO_DATA_WIDTH()
+) fifo_right_inst (
+    .reset(reset),
+    .wr_clk(clock),
+    .wr_en(FIFO_Right_wr_en),
+    .din(), // the out signal from IIR Sub
+    .full(FIFO_Right_Full),
+    .rd_clk(clock),
+    .rd_en(FIFO_Right_rd_en),
+    .dout(FIFO_Right_DOut),
+    .empty(FIFO_Right_Empty)
+); 
+
+    // Read IQ module placeholder
 
     // FIR CMPLX placeholder module
     fir_cmplx #(.DATA_WIDTH(DATA_WIDTH)) fir_cmplx_inst (
@@ -48,6 +162,7 @@ module top_level #(
         .data_out(fir_demod_out),
         .done(fir_demod_done)
     );
+
 
     // Adder module
     adder #(.DATA_WIDTH(DATA_WIDTH)) add_inst (

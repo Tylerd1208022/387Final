@@ -3,7 +3,7 @@ module multiplier #(
 ) (
     input logic                         clock,
     input logic                         reset,
-    input logic                         start,
+    input logic                         start,  // I dont think we need this as its driven by a FIFO
     input logic [DATA_WIDTH-1:0]        multiplicand,
     input logic [DATA_WIDTH-1:0]        multiplier,
     output logic [2*DATA_WIDTH-1:0]     product,
