@@ -52,7 +52,7 @@ module FIR #(
                dotProdSubOps[i] = TAPS[(multCounter_s * MULT_PER_CYCLE) + i] * shiftRegNow[(multCounter_s * MULT_PER_CYCLE) + i];
             end
             for(i = 0; i < MULT_PER_CYCLE; i = i + 1) begin
-               dotProd_c += dotProdSubOps[i];
+               dotProd_c += dotProdSubOps[i] / (4'h00000400); //DEQUANTIZE
             end
             if (multCounter_s == MULT_CYCLE_COUNT - 1) begin
                 state_c = doneCalc;

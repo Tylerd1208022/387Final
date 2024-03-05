@@ -11,43 +11,73 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# do simulateFIR.do
+# do simulateFIR_CMPLX.do
 # -9
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim SE-64 vmap 2020.1 Lib Mapping Utility 2020.01 Jan 28 2020
 # vmap work work 
 # Modifying modelsim.ini
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 12:51:45 on Mar 01,2024
-# vlog -reportprogress 300 -work work ../sv/FIR.sv 
-# -- Compiling module FIR
-# ** Warning: ../sv/FIR.sv(11): (vlog-13314) Defaulting port 'TAPS' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# Start time: 15:37:05 on Mar 04,2024
+# vlog -reportprogress 300 -work work ../sv/FIR_CMPLX.sv 
+# -- Compiling module FIR_COMPLEX
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
 # 
 # Top level modules:
-# 	FIR
-# End time: 12:51:45 on Mar 01,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
+# 	FIR_COMPLEX
+# End time: 15:37:05 on Mar 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 16
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 12:51:45 on Mar 01,2024
-# vlog -reportprogress 300 -work work ../sv/testFIR.sv 
-# -- Compiling module FIR_tb
+# Start time: 15:37:05 on Mar 04,2024
+# vlog -reportprogress 300 -work work ../sv/testFIR_CMPLX.sv 
+# -- Compiling module FIR_CMPLX_tb
 # 
 # Top level modules:
-# 	FIR_tb
-# End time: 12:51:45 on Mar 01,2024, Elapsed time: 0:00:00
+# 	FIR_CMPLX_tb
+# End time: 15:37:05 on Mar 04,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vsim -voptargs="+acc" "+notimingchecks" -L work work.FIR_tb -wlf FIR_tb.wlf 
-# Start time: 12:51:45 on Mar 01,2024
+# vsim -voptargs="+acc" "+notimingchecks" -L work work.FIR_CMPLX_tb -wlf FIR_CMPLX_tb.wlf 
+# Start time: 15:37:05 on Mar 04,2024
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: ../sv/FIR.sv(11): (vopt-13314) Defaulting port 'TAPS' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
-# ** Note: (vopt-143) Recognized 1 FSM in module "FIR(fast)".
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(23): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../sv/FIR_CMPLX.sv(24): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Note: (vopt-143) Recognized 1 FSM in module "FIR_COMPLEX(fast)".
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=16.
 # Loading sv_std.std
-# Loading work.FIR_tb(fast)
-# Loading work.FIR(fast)
-# ** Note: $finish    : ../sv/testFIR.sv(41)
-#    Time: 1160 ns  Iteration: 0  Instance: /FIR_tb
+# Loading work.FIR_CMPLX_tb(fast)
+# Loading work.FIR_COMPLEX(fast)
+# ** Note: $finish    : ../sv/testFIR_CMPLX.sv(58)
+#    Time: 3160 ns  Iteration: 0  Instance: /FIR_CMPLX_tb
 # 1
-# Break in Module FIR_tb at ../sv/testFIR.sv line 41
-# End time: 12:52:00 on Mar 01,2024, Elapsed time: 0:00:15
-# Errors: 0, Warnings: 1
+# Break in Module FIR_CMPLX_tb at ../sv/testFIR_CMPLX.sv line 58
+# End time: 15:37:23 on Mar 04,2024, Elapsed time: 0:00:18
+# Errors: 0, Warnings: 16
