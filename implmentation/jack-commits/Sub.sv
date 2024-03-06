@@ -1,32 +1,56 @@
-module subtractor #(
+module subtract #(
     parameter DATA_WIDTH = 32
 ) (
-    input logic                         clock,
-    input logic                         reset,
-    input logic                         start,
-    input logic [DATA_WIDTH-1:0]        minuend,
-    input logic [DATA_WIDTH-1:0]        subtrahend,
-    output logic [DATA_WIDTH-1:0]       difference,
-    output logic                        complete,
-    output logic                        underflow
+    input logic                          clock,
+    input logic                          reset,
+    input logic                          start,
+    input logic [DATA_WIDTH-1:0]         subend2,
+    input logic [DATA_WIDTH-1:0]         subend1,
+    output logic [DATA_WIDTH-1:0]        difference,
+    output logic                         complete
 );
+
+    typedef enum logic [1:0] {
+        IDLE,
+        SUBTRACT,
+        OUTPUT
+    } state_t;
+
+    state_t state, next_state;
 
     logic [DATA_WIDTH:0] tempDifference;
 
-    always_comb begin
-        tempDifference = {1'b0, minuend} - {1'b0, subtrahend};
-    end
-
     always_ff @(posedge clock or posedge reset) begin
         if (reset) begin
+            state <= IDLE;
             difference <= 0;
-            underflow <= 0;
             complete <= 0;
-        end else if (start) begin
-            difference <= tempDifference[DATA_WIDTH-1:0];
-            underflow <= tempDifference[DATA_WIDTH];
-            complete <= 1;
+        end else begin
+            state <= next_state;
         end
     end
 
+    always_comb begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (start) begin
+                    next_state = SUBTRACT;
+                end
+            end
+            SUBTRACT: begin
+                tempDifference = {1'b0, subend2} - {1'b0, subend1};
+                next_state = OUTPUT;
+            end
+            OUTPUT: begin
+                difference = tempDifference[DATA_WIDTH-1:0];
+                complete = 1;
+                next_state = IDLE;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
 endmodule
+
+
