@@ -9,13 +9,12 @@ module FIR #(
     input logic                     reset,
     input logic [DATA_WIDTH - 1:0]  newData,
     input logic                     newDataAvailible,
+    input logic                     rd_en, //Prevent transition from shift when true
     output logic [DATA_WIDTH - 1:0] dotProd,
     output logic                    done,
     output logic                    in_rd_en
 );
 
-
-    
 
     typedef enum logic[1:0] {shift, mult, doneCalc} FIRstate;
     FIRstate state_s, state_c;
@@ -35,18 +34,22 @@ module FIR #(
         multCounter_c = multCounter_s;
         dotProd_c = dotProd;
         in_rd_en = 0;
+        done = 0;
         case (state_s)
         shift: begin
             in_rd_en = 1;
             if (newDataAvailible == 1'b1) begin
-                shiftCounter_c = shiftCounter_s + 1;
-                shiftRegNext[TAP_COUNT-1:1] = shiftRegNow[TAP_COUNT-2:0];
-                shiftRegNext[0] = newData;
-                if (shiftCounter_s == DECIMATION_FACTOR - 1) begin
+                if (shiftCounter_s >= DECIMATION_FACTOR - 1) begin
                     shiftCounter_c = 0;
                     multCounter_c = 0;
-                    state_c = mult;
-                end 
+                    if (rd_en == 1'b1) begin
+                        state_c = mult;
+                    end
+                end else begin
+                    shiftCounter_c = shiftCounter_s + 1;
+                    shiftRegNext[TAP_COUNT-1:1] = shiftRegNow[TAP_COUNT-2:0];
+                    shiftRegNext[0] = newData;
+                end
             end
         end
         mult: begin

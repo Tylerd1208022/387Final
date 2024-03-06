@@ -9,11 +9,12 @@ module IIR #(
     input logic                     reset,
     input logic [DATA_WIDTH - 1:0]  newData,
     input logic                     newDataAvailable,
-    input logic [DATA_WIDTH - 1:0]  FEEDFORWARD_TAPS[TAP_COUNT],
-    input logic [DATA_WIDTH - 1:0]  FEEDBACK_TAPS[FB_TAP_COUNT],
     output logic [DATA_WIDTH - 1:0] filteredData,
     output logic                    done
 );
+    //Insert from fm_radio.h
+    localparam [DATA_WIDTH - 1:0]  FEEDFORWARD_TAPS[TAP_COUNT]
+    localparam [DATA_WIDTH - 1:0]  FEEDBACK_TAPS[FB_TAP_COUNT]
 
     logic [DATA_WIDTH - 1:0] fir_output;
     logic fir_done;

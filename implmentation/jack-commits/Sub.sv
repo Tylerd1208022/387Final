@@ -3,29 +3,41 @@ module subtractor #(
 ) (
     input logic                         clock,
     input logic                         reset,
-    input logic                         start,
-    input logic [DATA_WIDTH-1:0]        minuend,
-    input logic [DATA_WIDTH-1:0]        subtrahend,
-    output logic [DATA_WIDTH-1:0]       difference,
-    output logic                        complete,
-    output logic                        underflow
+    input logic                         out_rd_en,  // I dont think we need this as its driven by a FIFO
+    input logic                         dataAvailible,
+    input logic [DATA_WIDTH-1:0]        op1,
+    input logic [DATA_WIDTH-1:0]        op2,
+    output logic [DATA_WIDTH-1:0]       sum,
+    output logic                        complete
 );
 
-    logic [DATA_WIDTH:0] tempDifference;
+    logic [DATA_WIDTH-1:0] tempSum;
+    logic   write_s, write_c;
 
     always_comb begin
-        tempDifference = {1'b0, minuend} - {1'b0, subtrahend};
+
+        tempSum = sum;
+        complete = 0;
+        if (write_s == 1'b1) begin
+            complete = 1;
+            if (out_rd_en == 1'b1) begin
+                write_c = 0;
+            end
+        end else begin
+            tempSum = op1 - op2;
+            if (dataAvailible) begin
+                write_c = 1;
+            end
+        end
     end
 
     always_ff @(posedge clock or posedge reset) begin
         if (reset) begin
-            difference <= 0;
-            underflow <= 0;
-            complete <= 0;
-        end else if (start) begin
-            difference <= tempDifference[DATA_WIDTH-1:0];
-            underflow <= tempDifference[DATA_WIDTH];
-            complete <= 1;
+            product <= 0;
+            write_s <= 0;
+        end else begin
+            product <= tempSum;
+            write_s <= write_c;
         end
     end
 
