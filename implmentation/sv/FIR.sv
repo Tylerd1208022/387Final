@@ -2,17 +2,20 @@ module FIR #(
     parameter TAP_COUNT = 8,
     parameter DECIMATION_FACTOR = 1,
     parameter MULT_PER_CYCLE = 8,
-    parameter DATA_WIDTH = 32
+    parameter DATA_WIDTH = 32,
+    parameter [0:31][31:0]TAPS
 )(
     input logic                     clock,
     input logic                     reset,
     input logic [DATA_WIDTH - 1:0]  newData,
     input logic                     newDataAvailible,
-    input logic [DATA_WIDTH - 1:0]  TAPS[TAP_COUNT],
     output logic [DATA_WIDTH - 1:0] dotProd,
     output logic                    done,
     output logic                    in_rd_en
 );
+
+
+    
 
     typedef enum logic[1:0] {shift, mult, doneCalc} FIRstate;
     FIRstate state_s, state_c;
@@ -52,7 +55,7 @@ module FIR #(
                dotProdSubOps[i] = TAPS[(multCounter_s * MULT_PER_CYCLE) + i] * shiftRegNow[(multCounter_s * MULT_PER_CYCLE) + i];
             end
             for(i = 0; i < MULT_PER_CYCLE; i = i + 1) begin
-               dotProd_c += dotProdSubOps[i] / (4'h00000400); //DEQUANTIZE
+               dotProd_c += dotProdSubOps[i] / (32'h00000400); //DEQUANTIZE
             end
             if (multCounter_s == MULT_CYCLE_COUNT - 1) begin
                 state_c = doneCalc;

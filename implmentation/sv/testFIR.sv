@@ -6,14 +6,14 @@ module FIR_tb();
     logic [31:0] data, dotProd;
 
     FIR #(
-        .TAP_COUNT(8),
-        .DECIMATION_FACTOR(8),
-        .MULT_PER_CYCLE(4),
-        .DATA_WIDTH(32)
+        .TAP_COUNT(32),
+        .DECIMATION_FACTOR(32),
+        .MULT_PER_CYCLE(1),
+        .DATA_WIDTH(32),
+        .TAPS('{1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8})
     ) inst (
         .clock(clock),
         .reset(reset),
-        .TAPS({1,2,3,4,5,6,7,8}),
         .newData(data),
         .newDataAvailible(dataAvail),
         .dotProd(dotProd),
@@ -37,7 +37,7 @@ module FIR_tb();
             data = i;
             #20;
         end
-        #100;
+        #500;
         $finish;
     end
 

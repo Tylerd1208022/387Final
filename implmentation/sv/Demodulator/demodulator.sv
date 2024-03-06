@@ -8,6 +8,7 @@ module demodulator#(
     input logic [DATA_WIDTH - 1 : 0]    y,
     input logic [DATA_WIDTH - 1 : 0]    gain,
     output logic                        done,
+    output logic                        fir_cmplx_rd_en,
     output logic [DATA_WIDTH - 1 : 0]   demod
 );
 
@@ -36,6 +37,7 @@ module demodulator#(
     );
 
     always_comb begin
+        fir_cmplx_rd_en = 0;
         op1_c = op1_s;
         op2_c = op2_s;
         op3_c = op3_s;
@@ -54,6 +56,7 @@ module demodulator#(
         state_c = state_s;
         case (state_s)
         idle:begin
+            fir_cmplx_rd_en = 1;
             op1_c = lastX_s * x;
             op2_c = -1 * lastY_s * y;
             op3_c = lastX_s * y;

@@ -9,6 +9,19 @@ module top_level #(
     output logic [DATA_WIDTH - 1 : 0] left_audio, 
     output logic [DATA_WIDTH - 1 : 0] right_audio 
 );
+    //TAP COEFFICIENTS
+
+    localparam logic[0:31][31:0] BP_PILOT_TONE_TAPS = `{
+	(32'h0000000e), (32'h0000001f), (32'h00000034), (32'h00000048), (32'h0000004e), (32'h00000036), (32'hfffffff8), (32'hffffff98), 
+	(32'hffffff2d), (32'hfffffeda), (32'hfffffec3), (32'hfffffefe), (32'hffffff8a), (32'h0000004a), (32'h0000010f), (32'h000001a1), 
+	(32'h000001a1), (32'h0000010f), (32'h0000004a), (32'hffffff8a), (32'hfffffefe), (32'hfffffec3), (32'hfffffeda), (32'hffffff2d), 
+	(32'hffffff98), (32'hfffffff8), (32'h00000036), (32'h0000004e), (32'h00000048), (32'h00000034), (32'h0000001f), (32'h0000000e)
+    };
+
+    //END TAP COEFFICIENTS
+
+
+
     logic [DATA_WIDTH - 1 : 0] gain;
     logic [DATA_WIDTH - 1 : 0] fir_cmplx_out, fir_demod_out, fir_mult_out, fir_add_out, fir_sub_out;
     logic [DATA_WIDTH - 1 : 0] demod, add_out, sub_out;
@@ -23,10 +36,10 @@ module top_level #(
     logic FIFO_Left_wr_en, FIFO_Left_Full, FIFO_Left_rd_en, FIFO_Left_DOut, FIFO_Left_Empty;
     logic FIFO_Right_wr_en, FIFO_Right_Full, FIFO_Right_rd_en, FIFO_Right_DOut, FIFO_Right_Empty;
 
-    // FIFO In
+    // FIFO In, outputs to Read IQ
 fifo #(
-    .FIFO_BUFFER_SIZE(),
-    .FIFO_DATA_WIDTH()
+    .FIFO_BUFFER_SIZE(128),
+    .FIFO_DATA_WIDTH(DATA_WIDTH)
 ) fifo_in_inst (
     .reset(reset),
     .wr_clk(clock),
@@ -35,24 +48,99 @@ fifo #(
     .full(FIFO_In_Full),
     .rd_clk(clock),
     .rd_en(FIFO_In_rd_en),
-    .dout(FIFO_In_DOut),
+    .dout(FIFO_In_Dout),
     .empty(FIFO_In_Empty)
 );    
-    // FIFO Demod
+
+    //IQ Signals
+
+    logic [DATA_WIDTH - 1: 0] parsedQuantizedQ, parsedQuantizedI;
+    logic iq_data_ready;
+    //Parse data - Only operate when allowed to by past modules
+iq_read #(
+    .DATA_WIDTH(32),
+    .QUANTIZE_WIDTH(10)
+) iq_read_inst (
+    .clock(clock),
+    .reset(reset),
+    .dataAvailible(~FIFO_In_Empty),
+    .out_rd_en(iq_read_rd_en),
+    .iq_data_in(FIFO_In_Dout),
+    .i_data_out(parsedQuantizedI),
+    .q_data_out(parsedQuantizedQ),
+    .outputAvailible(iq_data_ready),
+    .in_rd_en(FIFO_In_rd_en)
+);
+
+//Signals for FIR COMPLEX
+logic iq_read_rd_en, FIR_CMPLX_DATA_AVAIL;
+logic [DATA_WIDTH-1:0] FIR_CMPLX_Q, FIR_CMPLX_I;
+
+fir_cmplx #(
+    .DATA_WIDTH(DATA_WIDTH),
+    .TAP_COUNT(20),
+    .MULT_PER_CYCLE(1),
+    .DECIMATION_FACTOR(1)
+    ) fir_cmplx_inst (
+    .Iin(parsedQuantizedI),
+    .Qin(parsedQuantizedQ)
+    .clock(clock),
+    .reset(reset),
+    .newDataAvailible(iq_data_ready),
+    .out_rd_en(fir_cmplx_rd_en),
+    .in_rd_en(iq_read_rd_en),
+    .Iout(FIR_CMPLX_I),
+    .Qout(FIR_CMPLX_Q),
+    .Done(FIR_CMPLX_DATA_AVAIL)
+);
+
+//Signals for demodulator
+logic fir_cmplx_rd_en;
+
+demodulator #(
+    .DATA_WIDTH(DATA_WIDTH)
+    ) demod_inst (
+    .clock(clock),
+    .reset(reset),
+    .start(FIR_CMPLX_DATA_AVAIL), //READY TO RUN NEXT
+    .x(FIR_CMPLX_Q),
+    .y(FIR_CMPLX_I),
+    .gain(gain),
+    .done(demod_done),
+    .fir_cmplx_rd_en(fir_cmplx_rd_en)
+    .demod(demod)
+);
+// FIFO Demod
 fifo #(
-    .FIFO_BUFFER_SIZE(),
-    .FIFO_DATA_WIDTH()
+    .FIFO_BUFFER_SIZE(128),
+    .FIFO_DATA_WIDTH(DATA_WIDTH)
 ) fifo_demod_inst (
     .reset(reset),
     .wr_clk(clock),
-    .wr_en(FIFO_Demod_wr_en),
-    .din(), // the out signal from FIR Demod
+    .wr_en(demod_done),
+    .din(demod), // the out signal from FIR Demod
     .full(FIFO_Demod_Full),
     .rd_clk(clock),
     .rd_en(FIFO_Demod_rd_en),
     .dout(FIFO_Demod_Out),
     .empty(FIFO_Demod_Empty)
-); 
+);
+//BOTTOM LEFT FIR-> FIR MULT FIR PIPELINE
+
+fir #(
+    .TAP_COUNT(32),
+    .DECIMATION_FACTOR(1),
+    .MULT_PER_CYCLE(1),
+    .DATA_WIDTH(32),
+    .TAPS(BP_PILOT_TONE_TAPS)
+) FIR_DEMOD_PILOT_BP (
+    .clock(clock),
+    .reset(reset),
+    .newData(FIFO_Demod_Out)
+    .newDataAvailible(~FIFO_Demod_Empty),
+    
+);
+
     // FIFO Multiply
 fifo #(
     .FIFO_BUFFER_SIZE(),
@@ -132,26 +220,10 @@ fifo #(
     // Read IQ module placeholder
 
     // FIR CMPLX placeholder module
-    fir_cmplx #(.DATA_WIDTH(DATA_WIDTH)) fir_cmplx_inst (
-        .clock(clock),
-        .reset(reset),
-        .start(start),
-        .data_in(i_data),
-        .data_out(fir_cmplx_out),
-        .done(fir_cmplx_done)
-    );
+
 
     // Demodulator module
-    demodulator #(.DATA_WIDTH(DATA_WIDTH)) demod_inst (
-        .clock(clock),
-        .reset(reset),
-        .start(fir_cmplx_done),
-        .x(fir_cmplx_out),
-        .y(q_data),
-        .gain(gain),
-        .done(demod_done),
-        .demod(demod)
-    );
+
 
     // FIR after demodulation placeholder module
     fir #(.DATA_WIDTH(DATA_WIDTH)) fir_demod_inst (

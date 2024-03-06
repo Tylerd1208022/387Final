@@ -9,6 +9,8 @@ module FIR_COMPLEX#(
     input logic                                 clock,
     input logic                                 reset,
     input logic                                 newDataAvailible,
+    input logic                                 out_rd_en,
+    output logic                          in_rd_en,
     output logic [DATA_WIDTH-1:0]         Iout,
     output logic [DATA_WIDTH-1:0]         Qout,
     output logic                          Done
@@ -47,17 +49,23 @@ always_comb begin
     Qout_c = Qout;
     Iout_c = Iout;
     Done = 0;
+    in_rd_en = 0;
     case (state_s)
     shifting: begin
         Done = 1;
+        in_rd_en = 1;
         if (newDataAvailible == 1'b1) begin
             shiftCounter_c = shiftCounter_s + 1;
             IBuffNext[TAP_COUNT - 1 : 1] = IBuffNow[TAP_COUNT - 2 : 0];
             IBuffNext[0] = Iin;
             QBuffNext[TAP_COUNT - 1 : 1] = QBuffNow[TAP_COUNT - 2 : 0];
             QBuffNext[0] = Qin;
-            if (shiftCounter_s == DECIMATION_FACTOR - 1) begin
-                state_c = multiplying;
+            if (shiftCounter_s >= DECIMATION_FACTOR - 1) begin
+                if (out_rd_en == 1'b1) begin
+                    state_c = multiplying;
+                end else begin
+                    in_rd_en = 0; //Dont allow reads when bottleneck happens
+                end
                 multCounter_c = 0;
                 shiftCounter_c = 0;
                 Qout_c = 0;
@@ -98,17 +106,11 @@ always_comb begin
         Op4_c = 0;
         if (multCounter_s == MULT_CYCLE_COUNT - 1) begin
             multCounter_c = 0;
-            state_c = done;
+            state_c = shifting;
         end else begin
             multCounter_c = multCounter_s + 1;
             state_c = multiplying;
         end
-    end
-    done: begin
-        Done = 1;
-        state_c = shifting;
-        multCounter_c = 0;
-        shiftCounter_c = 0;
     end
     endcase
 
