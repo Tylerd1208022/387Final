@@ -1,0 +1,1 @@
+-distcompmode -link    -encrypt       -top work.iq_read -osyn /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_2/synwork/IQRead_comp.srs /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_2/synwork//distcomp/distcomp0/distcomp0.srs    

@@ -11,8 +11,8 @@
 
 Starting:    /vol/synopsys/fpga/O-2018.09-SP1/linux_a_64/mbin/synplify
 Install:     /vol/synopsys/fpga/O-2018.09-SP1
-Hostname:    selina.ece.northwestern.edu
-Date:        Mon Mar  4 16:03:07 2024
+Hostname:    joker.ece.northwestern.edu
+Date:        Wed Mar  6 10:10:44 2024
 Version:     O-2018.09-SP1
 
 Arguments:   -product synplify_premier
@@ -25,87 +25,206 @@ License Option: ident
 
 
 
-/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/arctan.prjlog file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/divider.srr"
+/home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/IQRead.prjlog file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srr"
 Running: rev_1 in foreground
 
-Running arctan|rev_1
+Running IQRead|rev_1
 
-Running Flow: compile (Compile) on arctan|rev_1
-# Mon Mar  4 16:03:27 2024
+Running Flow: compile (Compile) on IQRead|rev_1
+# Wed Mar  6 10:11:10 2024
 
-Running Flow: compile_flow (Compile Process) on arctan|rev_1
-# Mon Mar  4 16:03:27 2024
+Running Flow: compile_flow (Compile Process) on IQRead|rev_1
+# Wed Mar  6 10:11:10 2024
 License granted for 4 parallel jobs
 
-Running: compiler (Compile Input) on arctan|rev_1
-# Mon Mar  4 16:03:27 2024
-Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/synwork/divider_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/divider.srs
+Running: compiler (Compile Input) on IQRead|rev_1
+# Wed Mar  6 10:11:10 2024
+compiler exited with errors
+Job failed on: IQRead|rev_1
+
+Job: "compiler" terminated with error status: 2
+See log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synlog/IQRead_compiler.srr"
+# Wed Mar  6 10:11:11 2024
+
+Return Code: 2
+Run Time:00h:00m:01s
+Complete: Compile Process on IQRead|rev_1
+Complete: Compile on IQRead|rev_1
+Complete: Logic Synthesis on IQRead|rev_1
+2Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srr to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/backup/IQRead.srr
+log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srr"
+Running: rev_1 in foreground
+
+Running IQRead|rev_1
+
+Running Flow: compile (Compile) on IQRead|rev_1
+# Wed Mar  6 10:11:53 2024
+
+Running Flow: compile_flow (Compile Process) on IQRead|rev_1
+# Wed Mar  6 10:11:53 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on IQRead|rev_1
+# Wed Mar  6 10:11:53 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork/IQRead_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srs
 
 compiler completed
-# Mon Mar  4 16:03:30 2024
+# Wed Mar  6 10:11:56 2024
 
 Return Code: 0
 Run Time:00h:00m:03s
 
-Running: multi_srs_gen (Multi-srs Generator) on arctan|rev_1
-# Mon Mar  4 16:03:30 2024
+Running: multi_srs_gen (Multi-srs Generator) on IQRead|rev_1
+# Wed Mar  6 10:11:56 2024
 
 multi_srs_gen completed
-# Mon Mar  4 16:03:31 2024
+# Wed Mar  6 10:11:56 2024
 
 Return Code: 0
-Run Time:00h:00m:01s
-Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/synwork/divider_mult.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/divider.srs
-Complete: Compile Process on arctan|rev_1
+Run Time:00h:00m:00s
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork/IQRead_mult.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srs
+Complete: Compile Process on IQRead|rev_1
 
-Running: premap (Premap) on arctan|rev_1
-# Mon Mar  4 16:03:31 2024
+Running: premap (Premap) on IQRead|rev_1
+# Wed Mar  6 10:11:56 2024
 
 premap completed with warnings
-# Mon Mar  4 16:03:31 2024
+# Wed Mar  6 10:11:57 2024
 
 Return Code: 1
-Run Time:00h:00m:00s
-Complete: Compile on arctan|rev_1
+Run Time:00h:00m:01s
+Complete: Compile on IQRead|rev_1
 
-Running Flow: map (Map) on arctan|rev_1
-# Mon Mar  4 16:03:31 2024
+Running Flow: map (Map) on IQRead|rev_1
+# Wed Mar  6 10:11:57 2024
 License granted for 4 parallel jobs
 
-Running: fpga_mapper (Map & Optimize) on arctan|rev_1
-# Mon Mar  4 16:03:31 2024
-Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/synwork/divider_m.srm to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/divider.srm
+Running: fpga_mapper (Map & Optimize) on IQRead|rev_1
+# Wed Mar  6 10:11:57 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork/IQRead_m.srm to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srm
 
 fpga_mapper completed with warnings
-# Mon Mar  4 16:03:39 2024
+# Wed Mar  6 10:11:58 2024
 
 Return Code: 1
-Run Time:00h:00m:08s
-Complete: Map on arctan|rev_1
-Complete: Logic Synthesis on arctan|rev_1
-01WARNING:  No database file, or it is out of date.
-INFO:  Resetting Correlation database
-WARNING:  No database file, or it is out of date.
-INFO:  Target Implementation: /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/arctan.prj|rev_1
-INFO:  **** *_synplify.sdc verification mode  *****
-Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/divider.srr to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/backup/divider.srr
-log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/divider.srr"
-Running: timing in foreground
+Run Time:00h:00m:01s
+Complete: Map on IQRead|rev_1
+Complete: Logic Synthesis on IQRead|rev_1
+0log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srr"
+Running: rev_1 in foreground
 
-running timing analysis on /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/divider.srd
+Running IQRead|rev_1
 
-Running: timing (Timing Analysis) on arctan|rev_1
-# Mon Mar  4 16:03:45 2024
+Running Flow: compile (Compile) on IQRead|rev_1
+# Wed Mar  6 10:12:36 2024
 
-timing completed with warnings
-# Mon Mar  4 16:03:45 2024
+Running Flow: compile_flow (Compile Process) on IQRead|rev_1
+# Wed Mar  6 10:12:36 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on IQRead|rev_1
+# Wed Mar  6 10:12:36 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork/IQRead_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srs
+
+compiler completed
+# Wed Mar  6 10:12:40 2024
+
+Return Code: 0
+Run Time:00h:00m:04s
+
+Running: multi_srs_gen (Multi-srs Generator) on IQRead|rev_1
+# Wed Mar  6 10:12:40 2024
+
+multi_srs_gen completed
+# Wed Mar  6 10:12:40 2024
+
+Return Code: 0
+Run Time:00h:00m:00s
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork/IQRead_mult.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srs
+Complete: Compile Process on IQRead|rev_1
+
+Running: premap (Premap) on IQRead|rev_1
+# Wed Mar  6 10:12:40 2024
+
+premap completed with warnings
+# Wed Mar  6 10:12:40 2024
 
 Return Code: 1
 Run Time:00h:00m:00s
-INFO:  Running with: effort = high, paths per endpoint = 1, sorted by = slack, QOR mode = 1 
- 
-INFO:  Exiting after *.itd file creation, correlation check not run. 
- 
-0
-/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/sdc_verif_slack.xml /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Demodulator/rev_1/sdc_verif_slack_match.xmlexit status=0
+Complete: Compile on IQRead|rev_1
+
+Running Flow: map (Map) on IQRead|rev_1
+# Wed Mar  6 10:12:40 2024
+License granted for 4 parallel jobs
+
+Running: fpga_mapper (Map & Optimize) on IQRead|rev_1
+# Wed Mar  6 10:12:40 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork/IQRead_m.srm to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srm
+
+fpga_mapper completed with warnings
+# Wed Mar  6 10:12:42 2024
+
+Return Code: 1
+Run Time:00h:00m:02s
+Complete: Map on IQRead|rev_1
+Complete: Logic Synthesis on IQRead|rev_1
+0log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srr"
+Running: rev_1 in foreground
+
+Running IQRead|rev_1
+
+Running Flow: compile (Compile) on IQRead|rev_1
+# Wed Mar  6 10:13:15 2024
+
+Running Flow: compile_flow (Compile Process) on IQRead|rev_1
+# Wed Mar  6 10:13:15 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on IQRead|rev_1
+# Wed Mar  6 10:13:15 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork/IQRead_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srs
+
+compiler completed
+# Wed Mar  6 10:13:19 2024
+
+Return Code: 0
+Run Time:00h:00m:04s
+
+Running: multi_srs_gen (Multi-srs Generator) on IQRead|rev_1
+# Wed Mar  6 10:13:19 2024
+
+multi_srs_gen completed
+# Wed Mar  6 10:13:19 2024
+
+Return Code: 0
+Run Time:00h:00m:00s
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork/IQRead_mult.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srs
+Complete: Compile Process on IQRead|rev_1
+
+Running: premap (Premap) on IQRead|rev_1
+# Wed Mar  6 10:13:19 2024
+
+premap completed with warnings
+# Wed Mar  6 10:13:20 2024
+
+Return Code: 1
+Run Time:00h:00m:01s
+Complete: Compile on IQRead|rev_1
+
+Running Flow: map (Map) on IQRead|rev_1
+# Wed Mar  6 10:13:20 2024
+License granted for 4 parallel jobs
+
+Running: fpga_mapper (Map & Optimize) on IQRead|rev_1
+# Wed Mar  6 10:13:20 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork/IQRead_m.srm to /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/IQRead.srm
+
+fpga_mapper completed with warnings
+# Wed Mar  6 10:13:21 2024
+
+Return Code: 1
+Run Time:00h:00m:01s
+Complete: Map on IQRead|rev_1
+Complete: Logic Synthesis on IQRead|rev_1
+0exit status=0
 License checkin: synplifypremierdp

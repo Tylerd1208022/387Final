@@ -1,0 +1,14 @@
+@N:: Applying property .distcompmodetop with value 1 on module iq_read in library work
+@N:: Applying property .distcompnoprune with value 1 on module iq_read in library work
+@N:: Applying property .noprune with value 1 on module iq_read in library work
+Selecting top level module iq_read
+@N: CG364 :"/home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/IQRead.sv":1:7:1:13|Synthesizing module iq_read in library work.
+Running optimization stage 1 on iq_read .......
+Running optimization stage 2 on iq_read .......
+@W: CL279 :"/home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/IQRead.sv":51:4:51:12|Pruning register bits 31 to 17 of q_data_out[31:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL279 :"/home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/IQRead.sv":51:4:51:12|Pruning register bits 31 to 17 of i_data_out[31:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+
+For a summary of runtime and memory usage per design unit, please see file:
+==========================================================
+@L: /home/ted4152/Winter24/FPGA/387Final/implmentation/jack-commits/rev_1/synwork//distcomp/distcomp0/distcomp0.rt.csv
+

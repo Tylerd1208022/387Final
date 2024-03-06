@@ -17,7 +17,12 @@ module top_level #(
 	(32'h000001a1), (32'h0000010f), (32'h0000004a), (32'hffffff8a), (32'hfffffefe), (32'hfffffec3), (32'hfffffeda), (32'hffffff2d), 
 	(32'hffffff98), (32'hfffffff8), (32'h00000036), (32'h0000004e), (32'h00000048), (32'h00000034), (32'h0000001f), (32'h0000000e)
     };
-
+    localparam logic[0:31][31:0] BP_PILOT_TONE_POST_SQUARE_TAPS = `{
+	(32'hffffffff), (32'h00000000), (32'h00000000), (32'h00000002), (32'h00000004), (32'h00000008), (32'h0000000b), (32'h0000000c), 
+	(32'h00000008), (32'hffffffff), (32'hffffffee), (32'hffffffd7), (32'hffffffbb), (32'hffffff9f), (32'hffffff87), (32'hffffff76), 
+	(32'hffffff76), (32'hffffff87), (32'hffffff9f), (32'hffffffbb), (32'hffffffd7), (32'hffffffee), (32'hffffffff), (32'h00000008), 
+	(32'h0000000c), (32'h0000000b), (32'h00000008), (32'h00000004), (32'h00000002), (32'h00000000), (32'h00000000), (32'hffffffff)
+    };
     //END TAP COEFFICIENTS
 
 
@@ -121,11 +126,13 @@ fifo #(
     .din(demod), // the out signal from FIR Demod
     .full(FIFO_Demod_Full),
     .rd_clk(clock),
-    .rd_en(FIFO_Demod_rd_en),
+    .rd_en(FIFO_Demod_rd_en/*MAKE THIS AND OF ALL READ IN FIRS*/),
     .dout(FIFO_Demod_Out),
     .empty(FIFO_Demod_Empty)
 );
 //BOTTOM LEFT FIR-> FIR MULT FIR PIPELINE
+logic [DATA_WIDTH - 1:0] PILOT_BP_FIR_OUT;
+logic FIR_PILOT_BP_DONE, FIR_PILOT_BP_RE;
 
 fir #(
     .TAP_COUNT(32),
@@ -136,10 +143,35 @@ fir #(
 ) FIR_DEMOD_PILOT_BP (
     .clock(clock),
     .reset(reset),
-    .newData(FIFO_Demod_Out)
+    .newData(FIFO_Demod_Out),
     .newDataAvailible(~FIFO_Demod_Empty),
-    
+    .dotProd(PILOT_BP_FIR_OUT),
+    .done(FIR_PILOT_BP_DONE),
+    .in_rd_en(FIR_PILOT_BP_RE)
 );
+
+logic [DATA_WIDTH - 1:0] SQUARE_PILOT_PROD;
+logic SQUARE_PILOT_BP_done;
+
+multiplier #(
+    .DATA_WIDTH(DATA_WIDTH)
+) PILOT_SQUARER (
+    .clock(clock),
+    .reset(reset),
+    .start(FIR_PILOT_BP_DONE),
+    .multiplicand(FIR_BP_FIR_OUT),
+    .multiplier(FIR_BP_FIR_OUT),
+    .product(SQUARE_PILOT_PROD),
+    .complete(SQUARE_PILOT_BP_done)
+);
+
+fir #(
+    .TAP_COUNT(32),
+    .DECIMATION_FACTOR(1),
+    .MULT_PER_CYCLE(1),
+    .DATA_WIDTH(32),
+    .TAPS(BP_PILOT_TONE_POST_SQUARE_TAPS)
+)
 
     // FIFO Multiply
 fifo #(

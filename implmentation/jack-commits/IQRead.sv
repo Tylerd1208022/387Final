@@ -28,8 +28,8 @@ module iq_read #(
             in_rd_en = 1;
             if (dataAvailible == 1'b1) begin
                 state_c = write;
-                i_data_out_c = $signed({iq_data_in[DATA_WIDTH-17:DATA_WIDTH-24],iq_data_in[DATA_WIDTH-25:0]}) * $signed(32'h00000400);
-                1_data_out_c = $signed({iq_data_in[DATA_WIDTH-1:DATA_WIDTH-8],iq_data_in[DATA_WIDTH-9:DATA_WIDTH-16]}) * $signed(32'h00000400);
+                i_data_out_c = $signed($signed({iq_data_in[DATA_WIDTH-17:DATA_WIDTH-24],iq_data_in[DATA_WIDTH-25:0]}) * $signed(32'h00000400));
+                q_data_out_c = $signed($signed({iq_data_in[DATA_WIDTH-1:DATA_WIDTH-8],iq_data_in[DATA_WIDTH-9:DATA_WIDTH-16]}) * $signed(32'h00000400));
             end
         end
         write: begin
