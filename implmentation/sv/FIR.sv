@@ -39,11 +39,11 @@ module FIR #(
         shift: begin
             in_rd_en = 1;
             if (newDataAvailible == 1'b1) begin
+                shiftRegNext[TAP_COUNT-1:1] = shiftRegNow[TAP_COUNT-2:0];
+                shiftRegNext[0] = newData;
                 if (shiftCounter_s >= DECIMATION_FACTOR - 1) begin
                     shiftCounter_c = 0;
                     multCounter_c = 0;
-                    shiftRegNext[TAP_COUNT-1:1] = shiftRegNow[TAP_COUNT-2:0];
-                    shiftRegNext[0] = newData;
                     if (rd_en == 1'b1) begin
                         state_c = mult;
                     end

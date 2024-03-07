@@ -36,3 +36,38 @@ add wave -noupdate -group FM_TOP_tb/inst/mergeMult/ -radix hexadecimal FM_TOP_tb
 
 add wave -noupdate -group FM_TOP_tb/inst/TOP_DECIMATE_FIR/
 add wave -noupdate -group FM_TOP_tb/inst/TOP_DECIMATE_FIR/ -radix hexadecimal FM_TOP_tb/inst/TOP_DECIMATE_FIR/*
+
+add wave -noupdate -group FM_TOP_tb/inst/BOTTOM_DECIMATE_FIR/
+add wave -noupdate -group FM_TOP_tb/inst/BOTTOM_DECIMATE_FIR/ -radix hexadecimal FM_TOP_tb/inst/BOTTOM_DECIMATE_FIR/*
+
+add wave -noupdate -group FM_TOP_tb/inst/fifo_add_inst/
+add wave -noupdate -group FM_TOP_tb/inst/fifo_add_inst/ -radix hexadecimal FM_TOP_tb/inst/fifo_add_inst/*
+
+add wave -noupdate -group FM_TOP_tb/inst/fifo_sub_inst/
+add wave -noupdate -group FM_TOP_tb/inst/fifo_sub_inst/ -radix hexadecimal FM_TOP_tb/inst/fifo_sub_inst/*
+
+add wave -noupdate -group FM_TOP_tb/inst/add_inst/
+add wave -noupdate -group FM_TOP_tb/inst/add_inst/ -radix hexadecimal FM_TOP_tb/inst/add_inst/*
+
+add wave -noupdate -group FM_TOP_tb/inst/sub_inst/
+add wave -noupdate -group FM_TOP_tb/inst/sub_inst/ -radix hexadecimal FM_TOP_tb/inst/sub_inst/*
+
+add wave -noupdate -group FM_TOP_tb/inst/TOP_DEEMPH/
+add wave -noupdate -group FM_TOP_tb/inst/TOP_DEEMPH/ -radix hexadecimal FM_TOP_tb/inst/TOP_DEEMPH/*
+
+add wave -noupdate -group FM_TOP_tb/inst/BOTTOM_DEEMPH/
+add wave -noupdate -group FM_TOP_tb/inst/BOTTOM_DEEMPH/ -radix hexadecimal FM_TOP_tb/inst/BOTTOM_DEEMPH/*
+
+add wave -noupdate -group FM_TOP_tb/inst/topGain/
+add wave -noupdate -group FM_TOP_tb/inst/topGain/ -radix hexadecimal FM_TOP_tb/inst/topGain/*
+
+add wave -noupdate -group FM_TOP_tb/inst/bottomGain/
+add wave -noupdate -group FM_TOP_tb/inst/bottomGain/ -radix hexadecimal FM_TOP_tb/inst/bottomGain/*
+
+add wave -noupdate -group FM_TOP_tb/inst/topGain/fifo_left_inst/
+add wave -noupdate -group FM_TOP_tb/inst/topGain/fifo_left_inst/ -radix hexadecimal FM_TOP_tb/inst/fifo_left_inst/*
+
+
+add wave -noupdate -group FM_TOP_tb/inst/topGain/fifo_right_inst/
+add wave -noupdate -group FM_TOP_tb/inst/topGain/fifo_right_inst/ -radix hexadecimal FM_TOP_tb/inst/fifo_right_inst/*
+

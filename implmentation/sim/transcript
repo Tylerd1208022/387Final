@@ -18,134 +18,134 @@
 # vmap work work 
 # Modifying modelsim.ini
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:47:59 on Mar 06,2024
+# Start time: 19:23:45 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/Add.sv 
 # -- Compiling module adder
 # 
 # Top level modules:
 # 	adder
-# End time: 18:48:00 on Mar 06,2024, Elapsed time: 0:00:01
+# End time: 19:23:46 on Mar 06,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:00 on Mar 06,2024
+# Start time: 19:23:46 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/arctan.sv 
 # -- Compiling module arctan
 # 
 # Top level modules:
 # 	arctan
-# End time: 18:48:00 on Mar 06,2024, Elapsed time: 0:00:00
+# End time: 19:23:46 on Mar 06,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:00 on Mar 06,2024
+# Start time: 19:23:46 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/comparator.sv 
 # -- Compiling module comparator
 # 
 # Top level modules:
 # 	comparator
-# End time: 18:48:01 on Mar 06,2024, Elapsed time: 0:00:01
+# End time: 19:23:47 on Mar 06,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:01 on Mar 06,2024
+# Start time: 19:23:47 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/demodulator.sv 
 # -- Compiling module demodulator
 # 
 # Top level modules:
 # 	demodulator
-# End time: 18:48:01 on Mar 06,2024, Elapsed time: 0:00:00
+# End time: 19:23:47 on Mar 06,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:01 on Mar 06,2024
+# Start time: 19:23:47 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/divider.sv 
 # -- Compiling module divider
 # 
 # Top level modules:
 # 	divider
-# End time: 18:48:02 on Mar 06,2024, Elapsed time: 0:00:01
+# End time: 19:23:47 on Mar 06,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:02 on Mar 06,2024
+# Start time: 19:23:47 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/FIR.sv 
 # -- Compiling module FIR
 # 
 # Top level modules:
 # 	FIR
-# End time: 18:48:02 on Mar 06,2024, Elapsed time: 0:00:00
+# End time: 19:23:48 on Mar 06,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:02 on Mar 06,2024
+# Start time: 19:23:48 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/FIR_CMPLX.sv 
 # -- Compiling module FIR_COMPLEX
 # 
 # Top level modules:
 # 	FIR_COMPLEX
-# End time: 18:48:03 on Mar 06,2024, Elapsed time: 0:00:01
+# End time: 19:23:48 on Mar 06,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:03 on Mar 06,2024
+# Start time: 19:23:48 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/FM_Top.sv 
 # -- Compiling module top_level
 # 
 # Top level modules:
 # 	top_level
-# End time: 18:48:04 on Mar 06,2024, Elapsed time: 0:00:01
+# End time: 19:23:49 on Mar 06,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:04 on Mar 06,2024
+# Start time: 19:23:49 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/IIR.sv 
 # -- Compiling module IIR
 # 
 # Top level modules:
 # 	IIR
-# End time: 18:48:04 on Mar 06,2024, Elapsed time: 0:00:00
+# End time: 19:23:49 on Mar 06,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:04 on Mar 06,2024
+# Start time: 19:23:49 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/IQRead.sv 
 # -- Compiling module iq_read
 # 
 # Top level modules:
 # 	iq_read
-# End time: 18:48:05 on Mar 06,2024, Elapsed time: 0:00:01
+# End time: 19:23:49 on Mar 06,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:05 on Mar 06,2024
+# Start time: 19:23:49 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/Multiplier.sv 
 # -- Compiling module multiplier
 # 
 # Top level modules:
 # 	multiplier
-# End time: 18:48:06 on Mar 06,2024, Elapsed time: 0:00:01
+# End time: 19:23:50 on Mar 06,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:06 on Mar 06,2024
+# Start time: 19:23:50 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/Sub.sv 
 # -- Compiling module subtractor
 # 
 # Top level modules:
 # 	subtractor
-# End time: 18:48:06 on Mar 06,2024, Elapsed time: 0:00:00
+# End time: 19:23:50 on Mar 06,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:06 on Mar 06,2024
+# Start time: 19:23:50 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/FM_TOP_tb.sv 
 # -- Compiling module FM_TOP_tb
 # 
 # Top level modules:
 # 	FM_TOP_tb
-# End time: 18:48:07 on Mar 06,2024, Elapsed time: 0:00:01
+# End time: 19:23:51 on Mar 06,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2020.1 Compiler 2020.01 Jan 28 2020
-# Start time: 18:48:07 on Mar 06,2024
+# Start time: 19:23:51 on Mar 06,2024
 # vlog -reportprogress 300 -work work ../sv/fifo.sv 
 # -- Compiling module fifo
 # 
 # Top level modules:
 # 	fifo
-# End time: 18:48:07 on Mar 06,2024, Elapsed time: 0:00:00
+# End time: 19:23:51 on Mar 06,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" "+notimingchecks" -L work work.FM_TOP_tb -wlf FM_TOP_tb.wlf 
-# Start time: 18:48:07 on Mar 06,2024
-# ** Note: (vsim-8009) Loading existing optimized design _opt2
+# Start time: 19:23:51 on Mar 06,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # Loading sv_std.std
 # Loading work.FM_TOP_tb(fast)
 # Loading work.top_level(fast)
@@ -165,29 +165,15 @@
 # Loading work.subtractor(fast)
 # Loading work.IIR(fast)
 # Loading work.FIR(fast__4)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'out_rd_en'. The port definition is at: ../sv/FM_Top.sv(9).
+#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst File: ../sv/FM_TOP_tb.sv Line: 10
 # ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'dout'. The port definition is at: ../sv/fifo.sv(13).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/fifo_add_inst File: ../sv/FM_Top.sv Line: 303
+#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/fifo_left_inst File: ../sv/FM_Top.sv Line: 431
 # ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'dout'. The port definition is at: ../sv/fifo.sv(13).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/fifo_sub_inst File: ../sv/FM_Top.sv Line: 318
-# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'addend1'. The port definition is at: ../sv/Add.sv(8).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/add_inst File: ../sv/FM_Top.sv Line: 333
-# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'addend2'. The port definition is at: ../sv/Add.sv(9).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/add_inst File: ../sv/FM_Top.sv Line: 333
-# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'op1'. The port definition is at: ../sv/Sub.sv(8).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/sub_inst File: ../sv/FM_Top.sv Line: 346
-# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'op2'. The port definition is at: ../sv/Sub.sv(9).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/sub_inst File: ../sv/FM_Top.sv Line: 346
-# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'newData'. The port definition is at: ../sv/IIR.sv(10).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/TOP_DEEMPH File: ../sv/FM_Top.sv Line: 367
-# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'multiplier'. The port definition is at: ../sv/Multiplier.sv(9).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/mergeMult_inst File: ../sv/FM_Top.sv Line: 411
-# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'dout'. The port definition is at: ../sv/fifo.sv(13).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/fifo_left_inst File: ../sv/FM_Top.sv Line: 426
-# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'dout'. The port definition is at: ../sv/fifo.sv(13).
-#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/fifo_right_inst File: ../sv/FM_Top.sv Line: 441
-# ** Note: $finish    : ../sv/FM_TOP_tb.sv(52)
-#    Time: 11220 ns  Iteration: 0  Instance: /FM_TOP_tb
+#    Time: 0 ns  Iteration: 0  Instance: /FM_TOP_tb/inst/fifo_right_inst File: ../sv/FM_Top.sv Line: 446
+# ** Note: $finish    : ../sv/FM_TOP_tb.sv(53)
+#    Time: 18220 ns  Iteration: 0  Instance: /FM_TOP_tb
 # 1
-# Break in Module FM_TOP_tb at ../sv/FM_TOP_tb.sv line 52
-# End time: 18:50:07 on Mar 06,2024, Elapsed time: 0:02:00
-# Errors: 0, Warnings: 10
+# Break in Module FM_TOP_tb at ../sv/FM_TOP_tb.sv line 53
+# End time: 19:24:02 on Mar 06,2024, Elapsed time: 0:00:11
+# Errors: 0, Warnings: 3

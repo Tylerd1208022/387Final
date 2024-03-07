@@ -6,6 +6,7 @@ module top_level #(
     input logic [DATA_WIDTH - 1 : 0] data_in,  
     input logic [DATA_WIDTH - 1 : 0] volume,
     input logic                      wr_en,    
+    input logic                      out_rd_en,
     output logic [DATA_WIDTH - 1 : 0] left_audio, 
     output logic [DATA_WIDTH - 1 : 0] right_audio 
 );
@@ -295,7 +296,7 @@ FIR #(
     .in_rd_en(BOTTOM_DEC_RD_EN)
 );
     // FIFO Add
-
+logic [31:0] FIFO_Sub_Dout, FIFO_Add_Dout;
     logic Adddone, Subdone;
 fifo #(
     .FIFO_BUFFER_SIZE(128),
@@ -307,11 +308,15 @@ fifo #(
     .din(TOP_DEC_FIR_RES), // the out signal from FIR Add
     .full(FIFO_Add_Full),
     .rd_clk(clock),
-    .rd_en(~FIFO_Add_Empty && ~Adddone),
-    .dout(FIFO_Add_Out),
+    .rd_en(~FIFO_Add_Empty && ~Adddone && ~FIFO_Sub_Empty && !Subdone),
+    .dout(FIFO_Add_Dout),
     .empty(FIFO_Add_Empty)
 ); 
     // FIFO Sub
+
+
+
+
 fifo #(
     .FIFO_BUFFER_SIZE(128),
     .FIFO_DATA_WIDTH(32)
@@ -322,8 +327,8 @@ fifo #(
     .din(BOTTOM_DEC_FIR_RES), // the out signal from FIR Sub
     .full(FIFO_Sub_Full),
     .rd_clk(clock),
-    .rd_en(~FIFO_Sub_Empty && ~Subdone),
-    .dout(FIFO_Sub_DOut),
+    .rd_en(~FIFO_Add_Empty && ~Adddone && ~FIFO_Sub_Empty && !Subdone),
+    .dout(FIFO_Sub_Dout),
     .empty(FIFO_Sub_Empty)
 ); 
 logic [DATA_WIDTH-1:0]AddSum, SubDiff;
@@ -335,8 +340,8 @@ adder #(
         .reset(reset),
         .out_rd_en(FIFO_Add_rd_en),
         .dataAvailible(~FIFO_Add_Empty),
-        .addend1(FIFO_Sub_DOut),
-        .addend2(FIFO_Add_DOut), // Placeholder for actual second addend
+        .addend1(FIFO_Sub_Dout),
+        .addend2(FIFO_Add_Dout), // Placeholder for actual second addend
         .sum(AddSum),
         .complete(Adddone)
     );
@@ -348,14 +353,14 @@ subtractor #(
         .reset(reset),
         .out_rd_en(FIFO_Sub_rd_en),
         .dataAvailible(~FIFO_Sub_Empty),
-        .op1(FIFO_Add_DOut),// Placeholder for actual second subtrahend
-        .op2(FIFO_Sub_DOut),
+        .op1(FIFO_Add_Dout),// Placeholder for actual second subtrahend
+        .op2(FIFO_Sub_Dout),
         .sum(SubDiff),
         .complete(Subdone)
     );
     // FIFO Out Left
 
-logic [DATA_WIDTH-1:0] Top_deemph_out, bottom_deemp_out;
+logic [DATA_WIDTH-1:0] Top_deemph_out, bottom_deemph_out;
 logic Top_deemph_done, Bottom_deemph_done;
 logic RightGainDone, LeftGainDone;
 IIR #(
@@ -367,7 +372,7 @@ IIR #(
 ) TOP_DEEMPH (
     .clock(clock),
     .reset(reset),
-    .newData(Addsum),
+    .newData(AddSum),
     .newDataAvailable(Adddone),
     .filteredData(Top_deemph_out),
     .done(Top_deemph_done),
@@ -386,7 +391,7 @@ IIR #(
     .reset(reset),
     .newData(SubDiff),
     .newDataAvailable(Subdone),
-    .filteredData(bottom_deemp_out),
+    .filteredData(bottom_deemph_out),
     .done(Bottom_deemph_done),
     .in_rd_en(FIFO_Add_rd_en),
     .rd_en(~RightGainDone)
@@ -408,13 +413,13 @@ multiplier #(
 );
 multiplier #(
     .DATA_WIDTH(32)
-) mergeMult_inst (
+) bottomGain (
     .clock(clock),
     .reset(reset),
     .out_rd_en(~FIFO_Right_Full),
     .dataAvailible(Bottom_deemph_done),
     .multiplicand(volume),
-    .multiplier(Bottom_deemph_out),
+    .multiplier(bottom_deemph_out),
     .product(RightGainOut),
     .complete(RightGainDone)
 );
@@ -430,7 +435,7 @@ fifo #(
     .din(LeftGainOut), // the out signal from IIR Add
     .full(FIFO_Left_Full),
     .rd_clk(clock),
-    .rd_en(FIFO_Left_rd_en),
+    .rd_en(out_rd_en),
     .dout(FIFO_Left_DOut),
     .empty(FIFO_Left_Empty)
 ); 
@@ -445,7 +450,7 @@ fifo #(
     .din(RightGainOut), // the out signal from IIR Sub
     .full(FIFO_Right_Full),
     .rd_clk(clock),
-    .rd_en(FIFO_Right_rd_en),
+    .rd_en(out_rd_en),
     .dout(FIFO_Right_DOut),
     .empty(FIFO_Right_Empty)
 ); 

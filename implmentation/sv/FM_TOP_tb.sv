@@ -12,6 +12,7 @@ module FM_TOP_tb();
         .reset(reset),
         .data_in(data_in),
         .wr_en(wr_en),
+        .out_rd_en(0),
         .volume(volume),
         .left_audio(Lout),
         .right_audio(Rout)
@@ -48,7 +49,7 @@ module FM_TOP_tb();
          #20;
          data_in = 32'h22446688;
          #20;
-         #11000;
+         #18000;
          $finish;
      end
 
