@@ -39,6 +39,7 @@ module FIR #(
         shift: begin
             in_rd_en = 1;
             if (newDataAvailible == 1'b1) begin
+                dotProd_c = 0;
                 shiftRegNext[TAP_COUNT-1:1] = shiftRegNow[TAP_COUNT-2:0];
                 shiftRegNext[0] = newData;
                 if (shiftCounter_s >= DECIMATION_FACTOR - 1) begin
@@ -55,10 +56,10 @@ module FIR #(
         mult: begin
             multCounter_c = multCounter_s + 1;
             for(i = 0; i < MULT_PER_CYCLE; i = i + 1) begin
-               dotProdSubOps[i] = TAPS[(multCounter_s * MULT_PER_CYCLE) + i] * shiftRegNow[(multCounter_s * MULT_PER_CYCLE) + i];
+               dotProdSubOps[i] = $signed($signed(TAPS[(multCounter_s * MULT_PER_CYCLE) + i]) * $signed(shiftRegNow[(multCounter_s * MULT_PER_CYCLE) + i]));
             end
             for(i = 0; i < MULT_PER_CYCLE; i = i + 1) begin
-               dotProd_c += dotProdSubOps[i] / (32'h00000400); //DEQUANTIZE
+               dotProd_c += $signed($signed(dotProdSubOps[i]) / $signed(32'h00000400)); //DEQUANTIZE
             end
             if (multCounter_s == MULT_CYCLE_COUNT - 1) begin
                 state_c = doneCalc;

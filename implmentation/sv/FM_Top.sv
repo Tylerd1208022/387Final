@@ -125,8 +125,8 @@ demodulator #(
     .clock(clock),
     .reset(reset),
     .start(FIR_CMPLX_DATA_AVAIL), //READY TO RUN NEXT
-    .x(FIR_CMPLX_Q),
-    .y(FIR_CMPLX_I),
+    .x(FIR_CMPLX_I),
+    .y(FIR_CMPLX_Q),
     .gain(gain),
     .done(demod_done),
     .fir_cmplx_rd_en(fir_cmplx_rd_en),
@@ -261,7 +261,7 @@ logic [DATA_WIDTH - 1:0] TOP_DEC_FIR_RES;
 logic FIR_TOP_DEC_DONE;
 FIR #(
     .DATA_WIDTH(DATA_WIDTH),
-    .DECIMATION_FACTOR(10),
+    .DECIMATION_FACTOR(8),
     .MULT_PER_CYCLE(1),
     .TAP_COUNT(32),
     .TAPS(LXR_FIR_TAPS)
@@ -281,7 +281,7 @@ logic [DATA_WIDTH - 1:0] BOTTOM_DEC_FIR_RES;
 
 FIR #(
     .DATA_WIDTH(DATA_WIDTH),
-    .DECIMATION_FACTOR(10),
+    .DECIMATION_FACTOR(8),
     .MULT_PER_CYCLE(1),
     .TAP_COUNT(32),
     .TAPS(LXR_FIR_TAPS)
@@ -312,11 +312,7 @@ fifo #(
     .dout(FIFO_Add_Dout),
     .empty(FIFO_Add_Empty)
 ); 
-    // FIFO Sub
-
-
-
-
+    
 fifo #(
     .FIFO_BUFFER_SIZE(128),
     .FIFO_DATA_WIDTH(32)
@@ -353,8 +349,8 @@ subtractor #(
         .reset(reset),
         .out_rd_en(FIFO_Sub_rd_en),
         .dataAvailible(~FIFO_Sub_Empty),
-        .op1(FIFO_Add_Dout),// Placeholder for actual second subtrahend
-        .op2(FIFO_Sub_Dout),
+        .op1(FIFO_Sub_Dout),// Placeholder for actual second subtrahend
+        .op2(FIFO_Add_Dout),
         .sum(SubDiff),
         .complete(Subdone)
     );

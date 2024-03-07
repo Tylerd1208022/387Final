@@ -13,6 +13,9 @@ add wave -noupdate -group FM_TOP_tb/inst/fir_cmplx_inst/ -radix hexadecimal FM_T
 add wave -noupdate -group FM_TOP_tb/inst/demod_inst/
 add wave -noupdate -group FM_TOP_tb/inst/demod_inst/ -radix hexadecimal FM_TOP_tb/inst/demod_inst/*
 
+add wave -noupdate -group FM_TOP_tb/inst/demod_inst/atan_inst/
+add wave -noupdate -group FM_TOP_tb/inst/demod_inst/atan_inst/ -radix hexadecimal FM_TOP_tb/inst/demod_inst/atan_inst/*
+
 add wave -noupdate -group FM_TOP_tb/inst/fifo_demod_inst/
 add wave -noupdate -group FM_TOP_tb/inst/fifo_demod_inst/ -radix hexadecimal FM_TOP_tb/inst/fifo_demod_inst/*
 

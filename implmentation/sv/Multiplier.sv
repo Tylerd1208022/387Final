@@ -36,7 +36,7 @@ module multiplier #(
             product <= 0;
             write_s <= 0;
         end else begin
-            product <= tempProduct[31:0];
+            product <= $signed(tempProduct[31:0])/$signed(32'h00000400);
             write_s <= write_c;
         end
     end

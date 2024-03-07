@@ -31,6 +31,7 @@ logic [7:0] shiftCounter_c, shiftCounter_s, multCounter_c, multCounter_s;
 logic [MULT_PER_CYCLE - 1 : 0][DATA_WIDTH - 1:0] subOps1, subOps2;
 logic [DATA_WIDTH - 1 : 0] Op1_c, Op1_s, Op2_c, Op2_s, Op3_c, Op3_s, Op4_c, Op4_s, Qout_c, Iout_c;
 logic multState_s, multState_c;
+logic Done_c;
 int i;
 
 
@@ -47,7 +48,7 @@ always_comb begin
     Op4_c = Op4_s;
     Qout_c = Qout;
     Iout_c = Iout;
-    Done = 0;
+    Done_c = 0;
     in_rd_en = 0;
     case (state_s)
     shifting: begin
@@ -101,7 +102,7 @@ always_comb begin
         if (multCounter_s == MULT_CYCLE_COUNT - 1) begin
             multCounter_c = 0;
             state_c = shifting;
-            Done = 1;
+            Done_c = 1;
         end else begin
             multCounter_c = multCounter_s + 1;
             state_c = multiplying;
@@ -126,6 +127,7 @@ always_ff @(posedge clock or posedge reset) begin
         Qout <= 0;
         multCounter_s <= 0;
         multState_s <= 0;
+        Done <= 0;
     end else begin
         state_s <= state_c;
         shiftCounter_s <= shiftCounter_c;
@@ -139,6 +141,7 @@ always_ff @(posedge clock or posedge reset) begin
         Iout <= Iout_c;
         Qout <= Qout_c;
         multState_s <= multState_c;
+        Done <= Done_c;
     end
 
 end
