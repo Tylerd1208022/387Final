@@ -15,7 +15,7 @@ module multiplier #(
     logic   write_s, write_c;
 
     always_comb begin
-
+        write_c = write_s;
         tempProduct = product;
         complete = 0;
         if (write_s == 1'b1) begin

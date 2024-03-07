@@ -49,7 +49,6 @@ module FIR #(
                     end
                 end else begin
                     shiftCounter_c = shiftCounter_s + 1;
-                    
                 end
             end
         end

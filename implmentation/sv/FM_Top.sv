@@ -179,8 +179,8 @@ multiplier #(
     .reset(reset),
     .dataAvailible(FIR_PILOT_BP_DONE),
     .out_rd_en(FIR_POST_SQUARE_RD_EN),
-    .multiplicand(FIR_BP_FIR_OUT),
-    .multiplier(FIR_BP_FIR_OUT),
+    .multiplicand(PILOT_BP_FIR_OUT),
+    .multiplier(PILOT_BP_FIR_OUT),
     .product(SQUARE_PILOT_PROD),
     .complete(SQUARE_PILOT_BP_done)
 );
@@ -197,14 +197,14 @@ FIR #(
     .clock(clock),
     .reset(reset),
     .newData(SQUARE_PILOT_PROD),
-    .rd_en(/*COME BACK MULT READY*/),
+    .rd_en(~FIFO_Mult_Full),
     .newDataAvailible(SQUARE_PILOT_BP_done),
     .dotProd(PILOT_PIPELINE_RESULT),
     .done(PILOT_PIPELINE_DONE),
     .in_rd_en(FIR_POST_SQUARE_RD_EN)
 );
 
-logic [31:0] LMR_DOT_PROD;
+logic [31:0] LMR_DOT_PROD,FIFO_Mult_Out;
 
 
 FIR #(
@@ -235,7 +235,7 @@ fifo #(
     .din(LMR_DOT_PROD),// the out signal from FIR multiply
     .full(FIFO_Mult_Full),
     .rd_clk(clock),
-    .rd_en(~MERGE_MULT_EMPTY && PILOT_PIPELINE_DONE), //only put out value when previous is ready, and write avail
+    .rd_en(~FIFO_Mult_Empty && PILOT_PIPELINE_DONE), //only put out value when previous is ready, and write avail
     .dout(FIFO_Mult_Out),
     .empty(FIFO_Mult_Empty)
 );
