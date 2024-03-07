@@ -9,7 +9,7 @@ module FIR #(
     input logic                     reset,
     input logic [DATA_WIDTH - 1:0]  newData,
     input logic                     newDataAvailible,
-    input logic                     rd_en, //Prevent transition from shift when true
+    input logic                     rd_en, //Prevent transition from shift until true
     output logic [DATA_WIDTH - 1:0] dotProd,
     output logic                    done,
     output logic                    in_rd_en
@@ -42,13 +42,14 @@ module FIR #(
                 if (shiftCounter_s >= DECIMATION_FACTOR - 1) begin
                     shiftCounter_c = 0;
                     multCounter_c = 0;
+                    shiftRegNext[TAP_COUNT-1:1] = shiftRegNow[TAP_COUNT-2:0];
+                    shiftRegNext[0] = newData;
                     if (rd_en == 1'b1) begin
                         state_c = mult;
                     end
                 end else begin
                     shiftCounter_c = shiftCounter_s + 1;
-                    shiftRegNext[TAP_COUNT-1:1] = shiftRegNow[TAP_COUNT-2:0];
-                    shiftRegNext[0] = newData;
+                    
                 end
             end
         end

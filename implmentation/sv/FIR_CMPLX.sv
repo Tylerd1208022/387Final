@@ -28,7 +28,6 @@ FIR_COMPLEX_STATE state_s, state_c;
 
 logic [TAP_COUNT - 1 :0][DATA_WIDTH-1:0] IBuffNow, IBuffNext, QBuffNow, QBuffNext;
 logic [7:0] shiftCounter_c, shiftCounter_s, multCounter_c, multCounter_s;
-
 logic [MULT_PER_CYCLE - 1 : 0][DATA_WIDTH - 1:0] subOps1, subOps2;
 logic [DATA_WIDTH - 1 : 0] Op1_c, Op1_s, Op2_c, Op2_s, Op3_c, Op3_s, Op4_c, Op4_s, Qout_c, Iout_c;
 logic multState_s, multState_c;
@@ -52,25 +51,20 @@ always_comb begin
     in_rd_en = 0;
     case (state_s)
     shifting: begin
-        Done = 1;
         in_rd_en = 1;
         if (newDataAvailible == 1'b1) begin
-            shiftCounter_c = shiftCounter_s + 1;
-            IBuffNext[TAP_COUNT - 1 : 1] = IBuffNow[TAP_COUNT - 2 : 0];
-            IBuffNext[0] = Iin;
-            QBuffNext[TAP_COUNT - 1 : 1] = QBuffNow[TAP_COUNT - 2 : 0];
-            QBuffNext[0] = Qin;
-            if (shiftCounter_s >= DECIMATION_FACTOR - 1) begin
-                if (out_rd_en == 1'b1) begin
+                shiftCounter_c = shiftCounter_s + 1;
+                IBuffNext[TAP_COUNT - 1 : 1] = IBuffNow[TAP_COUNT - 2 : 0];
+                IBuffNext[0] = Iin;
+                QBuffNext[TAP_COUNT - 1 : 1] = QBuffNow[TAP_COUNT - 2 : 0];
+                QBuffNext[0] = Qin;
+                if (shiftCounter_s >= DECIMATION_FACTOR - 1) begin
                     state_c = multiplying;
-                end else begin
-                    in_rd_en = 0; //Dont allow reads when bottleneck happens
-                end
-                multCounter_c = 0;
-                shiftCounter_c = 0;
-                Qout_c = 0;
-                Iout_c = 0;
-            end
+                    Qout_c = 0;
+                    Iout_c = 0;
+                    multCounter_c = 0;
+                    shiftCounter_c = 0; 
+            end 
         end
     end
     multiplying: begin
@@ -107,6 +101,7 @@ always_comb begin
         if (multCounter_s == MULT_CYCLE_COUNT - 1) begin
             multCounter_c = 0;
             state_c = shifting;
+            Done = 1;
         end else begin
             multCounter_c = multCounter_s + 1;
             state_c = multiplying;

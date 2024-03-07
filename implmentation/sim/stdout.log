@@ -1,0 +1,321 @@
+
+                             Synplify (R) Premier 
+
+                Version O-2018.09-SP1 for RHEL64 - Nov 27, 2018 
+
+                    Copyright (c) 1988 - 2018 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+
+Starting:    /vol/synopsys/fpga/O-2018.09-SP1/linux_a_64/mbin/synplify
+Install:     /vol/synopsys/fpga/O-2018.09-SP1
+Hostname:    selina.ece.northwestern.edu
+Date:        Wed Mar  6 14:57:07 2024
+Version:     O-2018.09-SP1
+
+Arguments:   -product synplify_premier
+ProductType: synplify_premier
+
+License checkout: synplifypremierdp
+License: synplifypremierdp from server synopsyslm.ece.northwestern.edu (Using premium license)
+Licensed Vendor: All FPGA
+License Option: ident
+
+
+
+/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Multiplier.prj/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Add.prjlog file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srr"
+Running: rev_1 in foreground
+
+Running Add|rev_1
+
+Running Flow: compile (Compile) on Add|rev_1
+# Wed Mar  6 14:58:13 2024
+
+Running Flow: compile_flow (Compile Process) on Add|rev_1
+# Wed Mar  6 14:58:13 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on Add|rev_1
+# Wed Mar  6 14:58:13 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srs
+compiler exited with errors
+Job failed on: Add|rev_1
+
+Job: "compiler" terminated with error status: 2
+See log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synlog/testIIR_compiler.srr"
+# Wed Mar  6 14:58:17 2024
+
+Return Code: 2
+Run Time:00h:00m:04s
+Complete: Compile Process on Add|rev_1
+Complete: Compile on Add|rev_1
+Complete: Logic Synthesis on Add|rev_1
+0Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srr to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/backup/testIIR.srr
+log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srr"
+Running: rev_1 in foreground
+
+Running Add|rev_1
+
+Running Flow: compile (Compile) on Add|rev_1
+# Wed Mar  6 15:00:03 2024
+
+Running Flow: compile_flow (Compile Process) on Add|rev_1
+# Wed Mar  6 15:00:03 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on Add|rev_1
+# Wed Mar  6 15:00:03 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srs
+compiler exited with errors
+Job failed on: Add|rev_1
+
+Job: "compiler" terminated with error status: 2
+See log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synlog/testIIR_compiler.srr"
+# Wed Mar  6 15:00:07 2024
+
+Return Code: 2
+Run Time:00h:00m:04s
+Complete: Compile Process on Add|rev_1
+Complete: Compile on Add|rev_1
+Complete: Logic Synthesis on Add|rev_1
+0log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srr"
+Running: rev_1 in foreground
+
+Running Add|rev_1
+
+Running Flow: compile (Compile) on Add|rev_1
+# Wed Mar  6 15:01:19 2024
+
+Running Flow: compile_flow (Compile Process) on Add|rev_1
+# Wed Mar  6 15:01:19 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on Add|rev_1
+# Wed Mar  6 15:01:19 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srs
+compiler exited with errors
+Job failed on: Add|rev_1
+
+Job: "compiler" terminated with error status: 2
+See log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synlog/testIIR_compiler.srr"
+# Wed Mar  6 15:01:23 2024
+
+Return Code: 2
+Run Time:00h:00m:04s
+Complete: Compile Process on Add|rev_1
+Complete: Compile on Add|rev_1
+Complete: Logic Synthesis on Add|rev_1
+0Opening object source file /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/IIR.sv
+log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srr"
+Running: rev_1 in foreground
+
+Running Add|rev_1
+
+Running Flow: compile (Compile) on Add|rev_1
+# Wed Mar  6 15:05:40 2024
+
+Running Flow: compile_flow (Compile Process) on Add|rev_1
+# Wed Mar  6 15:05:40 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on Add|rev_1
+# Wed Mar  6 15:05:40 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srs
+compiler exited with errors
+Job failed on: Add|rev_1
+
+Job: "compiler" terminated with error status: 2
+See log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synlog/testIIR_compiler.srr"
+# Wed Mar  6 15:05:43 2024
+
+Return Code: 2
+Run Time:00h:00m:03s
+Complete: Compile Process on Add|rev_1
+Complete: Compile on Add|rev_1
+Complete: Logic Synthesis on Add|rev_1
+0log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srr"
+Running: rev_1 in foreground
+
+Running Add|rev_1
+
+Running Flow: compile (Compile) on Add|rev_1
+# Wed Mar  6 15:06:03 2024
+
+Running Flow: compile_flow (Compile Process) on Add|rev_1
+# Wed Mar  6 15:06:03 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on Add|rev_1
+# Wed Mar  6 15:06:03 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srs
+compiler exited with errors
+Job failed on: Add|rev_1
+
+Job: "compiler" terminated with error status: 2
+See log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synlog/testIIR_compiler.srr"
+# Wed Mar  6 15:06:07 2024
+
+Return Code: 2
+Run Time:00h:00m:04s
+Complete: Compile Process on Add|rev_1
+Complete: Compile on Add|rev_1
+Complete: Logic Synthesis on Add|rev_1
+0log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srr"
+Running: rev_1 in foreground
+
+Running Add|rev_1
+
+Running Flow: compile (Compile) on Add|rev_1
+# Wed Mar  6 15:06:17 2024
+
+Running Flow: compile_flow (Compile Process) on Add|rev_1
+# Wed Mar  6 15:06:17 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on Add|rev_1
+# Wed Mar  6 15:06:17 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srs
+compiler exited with errors
+Job failed on: Add|rev_1
+
+Job: "compiler" terminated with error status: 2
+See log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synlog/testIIR_compiler.srr"
+# Wed Mar  6 15:06:20 2024
+
+Return Code: 2
+Run Time:00h:00m:03s
+Complete: Compile Process on Add|rev_1
+Complete: Compile on Add|rev_1
+Complete: Logic Synthesis on Add|rev_1
+0Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Add.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/arctan.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/comparator.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/demodulator.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/divider.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/fifo.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/FIR.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/FIR_CMPLX.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/FM_Top.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/IIR.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/IQRead.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Multiplier.sv"
+Warning: File already exists in project: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/Sub.sv"
+log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srr"
+Running: rev_1 in foreground
+
+Running Add|rev_1
+
+Running Flow: compile (Compile) on Add|rev_1
+# Wed Mar  6 15:07:05 2024
+
+Running Flow: compile_flow (Compile Process) on Add|rev_1
+# Wed Mar  6 15:07:05 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on Add|rev_1
+# Wed Mar  6 15:07:05 2024
+
+compiler completed
+# Wed Mar  6 15:07:08 2024
+
+Return Code: 0
+Run Time:00h:00m:03s
+
+Running: multi_srs_gen (Multi-srs Generator) on Add|rev_1
+# Wed Mar  6 15:07:08 2024
+
+multi_srs_gen completed
+# Wed Mar  6 15:07:08 2024
+
+Return Code: 0
+Run Time:00h:00m:00s
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_mult.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srs
+Complete: Compile Process on Add|rev_1
+
+Running: premap (Premap) on Add|rev_1
+# Wed Mar  6 15:07:08 2024
+
+premap completed with warnings
+# Wed Mar  6 15:07:09 2024
+
+Return Code: 1
+Run Time:00h:00m:01s
+Complete: Compile on Add|rev_1
+
+Running Flow: map (Map) on Add|rev_1
+# Wed Mar  6 15:07:09 2024
+License granted for 4 parallel jobs
+
+Running: fpga_mapper (Map & Optimize) on Add|rev_1
+# Wed Mar  6 15:07:09 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_m.srm to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srm
+
+fpga_mapper completed with warnings
+# Wed Mar  6 15:07:09 2024
+
+Return Code: 1
+Run Time:00h:00m:00s
+Complete: Map on Add|rev_1
+Complete: Logic Synthesis on Add|rev_1
+0log file: "/home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srr"
+Running: rev_1 in foreground
+
+Running Add|rev_1
+
+Running Flow: compile (Compile) on Add|rev_1
+# Wed Mar  6 15:08:30 2024
+
+Running Flow: compile_flow (Compile Process) on Add|rev_1
+# Wed Mar  6 15:08:30 2024
+License granted for 4 parallel jobs
+
+Running: compiler (Compile Input) on Add|rev_1
+# Wed Mar  6 15:08:30 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_comp.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srs
+
+compiler completed
+# Wed Mar  6 15:08:35 2024
+
+Return Code: 0
+Run Time:00h:00m:05s
+
+Running: multi_srs_gen (Multi-srs Generator) on Add|rev_1
+# Wed Mar  6 15:08:35 2024
+
+multi_srs_gen completed
+# Wed Mar  6 15:08:35 2024
+
+Return Code: 0
+Run Time:00h:00m:00s
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_mult.srs to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srs
+Complete: Compile Process on Add|rev_1
+
+Running: premap (Premap) on Add|rev_1
+# Wed Mar  6 15:08:35 2024
+
+premap completed with warnings
+# Wed Mar  6 15:08:36 2024
+
+Return Code: 1
+Run Time:00h:00m:01s
+Complete: Compile on Add|rev_1
+
+Running Flow: map (Map) on Add|rev_1
+# Wed Mar  6 15:08:36 2024
+License granted for 4 parallel jobs
+
+Running: fpga_mapper (Map & Optimize) on Add|rev_1
+# Wed Mar  6 15:08:36 2024
+Copied /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/synwork/testIIR_m.srm to /home/ted4152/Winter24/FPGA/387Final/implmentation/sv/rev_1/testIIR.srm
+
+fpga_mapper completed with warnings
+# Wed Mar  6 15:08:37 2024
+
+Return Code: 1
+Run Time:00h:00m:01s
+Complete: Map on Add|rev_1
+Complete: Logic Synthesis on Add|rev_1
+0exit status=0
+License checkin: synplifypremierdp

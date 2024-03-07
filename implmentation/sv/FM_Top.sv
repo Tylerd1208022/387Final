@@ -2,34 +2,34 @@ module top_level #(
     parameter DATA_WIDTH = 32
 ) (
     input logic clock,                    
-    input logic reset,                  
-    input logic start,                    
+    input logic reset,                                  
     input logic [DATA_WIDTH - 1 : 0] data_in,  
-    input logic [DATA_WIDTH - 1 : 0] volume,    
+    input logic [DATA_WIDTH - 1 : 0] volume,
+    input logic                      wr_en,    
     output logic [DATA_WIDTH - 1 : 0] left_audio, 
     output logic [DATA_WIDTH - 1 : 0] right_audio 
 );
     //TAP COEFFICIENTS
 
-    localparam logic[0:31][31:0] BP_PILOT_TONE_TAPS = `{
-	(32'h0000000e), (32'h0000001f), (32'h00000034), (32'h00000048), (32'h0000004e), (32'h00000036), (32'hfffffff8), (32'hffffff98), 
+    localparam logic[0:31][31:0] BP_PILOT_TONE_TAPS = '{(32'h0000000e), 
+    (32'h0000001f), (32'h00000034), (32'h00000048), (32'h0000004e), (32'h00000036), (32'hfffffff8), (32'hffffff98), 
 	(32'hffffff2d), (32'hfffffeda), (32'hfffffec3), (32'hfffffefe), (32'hffffff8a), (32'h0000004a), (32'h0000010f), (32'h000001a1), 
 	(32'h000001a1), (32'h0000010f), (32'h0000004a), (32'hffffff8a), (32'hfffffefe), (32'hfffffec3), (32'hfffffeda), (32'hffffff2d), 
 	(32'hffffff98), (32'hfffffff8), (32'h00000036), (32'h0000004e), (32'h00000048), (32'h00000034), (32'h0000001f), (32'h0000000e)
     };
-    localparam logic[0:31][31:0] BP_PILOT_TONE_POST_SQUARE_TAPS = `{
+    localparam logic[0:31][31:0] BP_PILOT_TONE_POST_SQUARE_TAPS = '{
 	(32'hffffffff), (32'h00000000), (32'h00000000), (32'h00000002), (32'h00000004), (32'h00000008), (32'h0000000b), (32'h0000000c), 
 	(32'h00000008), (32'hffffffff), (32'hffffffee), (32'hffffffd7), (32'hffffffbb), (32'hffffff9f), (32'hffffff87), (32'hffffff76), 
 	(32'hffffff76), (32'hffffff87), (32'hffffff9f), (32'hffffffbb), (32'hffffffd7), (32'hffffffee), (32'hffffffff), (32'h00000008), 
 	(32'h0000000c), (32'h0000000b), (32'h00000008), (32'h00000004), (32'h00000002), (32'h00000000), (32'h00000000), (32'hffffffff)
     };
-    localparam logic[0:31][31:0] LMR_MERGE_TAPS = `{
+    localparam logic[0:31][31:0] LMR_MERGE_TAPS = '{
 	(32'h00000000), (32'h00000000), (32'hfffffffc), (32'hfffffff9), (32'hfffffffe), (32'h00000008), (32'h0000000c), (32'h00000002), 
 	(32'h00000003), (32'h0000001e), (32'h00000030), (32'hfffffffc), (32'hffffff8c), (32'hffffff58), (32'hffffffc3), (32'h0000008a), 
 	(32'h0000008a), (32'hffffffc3), (32'hffffff58), (32'hffffff8c), (32'hfffffffc), (32'h00000030), (32'h0000001e), (32'h00000003), 
 	(32'h00000002), (32'h0000000c), (32'h00000008), (32'hfffffffe), (32'hfffffff9), (32'hfffffffc), (32'h00000000), (32'h00000000)
 };
-    localparam logic[0:31][31:0] LXR_FIR_TAPS = `{
+    localparam logic[0:31][31:0] LXR_FIR_TAPS = '{
 	(32'hfffffffd), (32'hfffffffa), (32'hfffffff4), (32'hffffffed), (32'hffffffe5), (32'hffffffdf), (32'hffffffe2), (32'hfffffff3), 
 	(32'h00000015), (32'h0000004e), (32'h0000009b), (32'h000000f9), (32'h0000015d), (32'h000001be), (32'h0000020e), (32'h00000243), 
 	(32'h00000243), (32'h0000020e), (32'h000001be), (32'h0000015d), (32'h000000f9), (32'h0000009b), (32'h0000004e), (32'h00000015), 
@@ -46,7 +46,7 @@ module top_level #(
     logic [DATA_WIDTH - 1 : 0] gain_left_out, gain_right_out;
     logic fir_cmplx_done, fir_demod_done, fir_mult_done, fir_add_done, fir_sub_done;
     logic demod_done, add_done, sub_done, gain_left_done, gain_right_done;
-    logic FIFO_In_wr_en, FIFO_In_Full, FIFO_In_rd_en, FIFO_In_DOut, FIFO_In_Empty;
+    logic FIFO_In_wr_en, FIFO_In_Full, FIFO_In_rd_en, FIFO_In_Empty;
     logic FIFO_Demod_wr_en, FIFO_Demod_Full, FIFO_Demod_rd_en, FIFO_Demod_DOut, FIFO_Demod_Empty;
     logic FIFO_Multiply_wr_en, FIFO_Multiply_Full, FIFO_Multiply_rd_en, FIFO_Multiply_DOut, FIFO_Multiply_Empty;
     logic FIFO_Add_wr_en, FIFO_Add_Full, FIFO_Add_rd_en, FIFO_Add_DOut, FIFO_Add_Empty;
@@ -55,25 +55,27 @@ module top_level #(
     logic FIFO_Right_wr_en, FIFO_Right_Full, FIFO_Right_rd_en, FIFO_Right_DOut, FIFO_Right_Empty;
 
     // FIFO In, outputs to Read IQ
+
+logic [DATA_WIDTH-1:0] FIFO_In_Dout;
+assign gain = 32'h000002f6;
 fifo #(
     .FIFO_BUFFER_SIZE(128),
     .FIFO_DATA_WIDTH(DATA_WIDTH)
 ) fifo_in_inst (
     .reset(reset),
     .wr_clk(clock),
-    .wr_en(FIFO_In_wr_en),
+    .wr_en(wr_en),
     .din(data_in),
     .full(FIFO_In_Full),
     .rd_clk(clock),
-    .rd_en(FIFO_In_rd_en),
+    .rd_en(FIFO_In_rd_en && ~FIFO_In_Empty),
     .dout(FIFO_In_Dout),
     .empty(FIFO_In_Empty)
 );    
-
     //IQ Signals
-
     logic [DATA_WIDTH - 1: 0] parsedQuantizedQ, parsedQuantizedI;
     logic iq_data_ready;
+    logic iq_read_rd_en, FIR_CMPLX_DATA_AVAIL;
     //Parse data - Only operate when allowed to by past modules
 iq_read #(
     .DATA_WIDTH(32),
@@ -91,17 +93,17 @@ iq_read #(
 );
 
 //Signals for FIR COMPLEX
-logic iq_read_rd_en, FIR_CMPLX_DATA_AVAIL;
-logic [DATA_WIDTH-1:0] FIR_CMPLX_Q, FIR_CMPLX_I;
+logic fir_cmplx_rd_en;
+logic [DATA_WIDTH-1:0] FIR_CMPLX_Q, FIR_CMPLX_I,FIFO_Demod_Out;
 
-fir_cmplx #(
+FIR_COMPLEX #(
     .DATA_WIDTH(DATA_WIDTH),
     .TAP_COUNT(20),
     .MULT_PER_CYCLE(1),
     .DECIMATION_FACTOR(1)
     ) fir_cmplx_inst (
     .Iin(parsedQuantizedI),
-    .Qin(parsedQuantizedQ)
+    .Qin(parsedQuantizedQ),
     .clock(clock),
     .reset(reset),
     .newDataAvailible(iq_data_ready),
@@ -113,7 +115,8 @@ fir_cmplx #(
 );
 
 //Signals for demodulator
-logic fir_cmplx_rd_en;
+logic LMR_RD_EN, LMR_DONE;
+logic BOTTOM_DEC_FIR_DONE, BOTTOM_DEC_RD_EN;
 
 demodulator #(
     .DATA_WIDTH(DATA_WIDTH)
@@ -125,9 +128,11 @@ demodulator #(
     .y(FIR_CMPLX_I),
     .gain(gain),
     .done(demod_done),
-    .fir_cmplx_rd_en(fir_cmplx_rd_en)
+    .fir_cmplx_rd_en(fir_cmplx_rd_en),
     .demod(demod)
 );
+
+logic FIR_PILOT_BP_DONE, FIR_PILOT_BP_RE;
 // FIFO Demod
 fifo #(
     .FIFO_BUFFER_SIZE(128),
@@ -139,14 +144,14 @@ fifo #(
     .din(demod), // the out signal from FIR Demod
     .full(FIFO_Demod_Full),
     .rd_clk(clock),
-    .rd_en(FIFO_Demod_rd_en/*MAKE THIS AND OF ALL READ IN FIRS*/),
+    .rd_en(FIR_PILOT_BP_RE && LMR_RD_EN && BOTTOM_DEC_RD_EN && ~FIFO_Demod_Empty),//Requires all be able to read before taking value from FIFOs - Synchronization!
     .dout(FIFO_Demod_Out),
     .empty(FIFO_Demod_Empty)
 );
 //BOTTOM LEFT FIR-> FIR MULT FIR PIPELINE
 logic [DATA_WIDTH - 1:0] PILOT_BP_FIR_OUT;
-logic FIR_PILOT_BP_DONE, FIR_PILOT_BP_RE;
 
+logic SQUARE_PILOT_BP_done, FIR_POST_SQUARE_RD_EN;
 FIR #(
     .TAP_COUNT(32),
     .DECIMATION_FACTOR(1),
@@ -165,7 +170,7 @@ FIR #(
 );
 
 logic [DATA_WIDTH - 1:0] SQUARE_PILOT_PROD;
-logic SQUARE_PILOT_BP_done, FIR_POST_SQUARE_RD_EN;
+
 
 multiplier #(
     .DATA_WIDTH(DATA_WIDTH)
@@ -181,7 +186,7 @@ multiplier #(
 );
 
 logic [DATA_WIDTH-1:0]PILOT_PIPELINE_RESULT;
-logic PILOT_PIPELINE_DONE, 
+logic PILOT_PIPELINE_DONE;
 FIR #(
     .TAP_COUNT(32),
     .DECIMATION_FACTOR(1),
@@ -200,7 +205,7 @@ FIR #(
 );
 
 logic [31:0] LMR_DOT_PROD;
-logic LMR_RD_EN, LMR_DONE;
+
 
 FIR #(
     .TAP_COUNT(32),
@@ -211,7 +216,7 @@ FIR #(
 ) LMR_MERGE_FIR (
     .clock(clock),
     .reset(reset),
-    .newData(FIFO_Demod_DOut),
+    .newData(FIFO_Demod_Out),
     .rd_en(~FIFO_Mult_Full),
     .newDataAvailible(~FIFO_Demod_Empty),
     .dotProd(LMR_DOT_PROD),
@@ -271,7 +276,7 @@ FIR #(
 );
 
 logic [DATA_WIDTH - 1:0] BOTTOM_DEC_FIR_RES;
-logic BOTTOM_DEC_FIR_DONE, BOTTOM_DEC_RD_EN;
+
 
 FIR #(
     .DATA_WIDTH(DATA_WIDTH),
@@ -290,6 +295,8 @@ FIR #(
     .in_rd_en(BOTTOM_DEC_RD_EN)
 );
     // FIFO Add
+
+    logic Adddone, Subdone;
 fifo #(
     .FIFO_BUFFER_SIZE(128),
     .FIFO_DATA_WIDTH(DATA_WIDTH)
@@ -300,7 +307,7 @@ fifo #(
     .din(TOP_DEC_FIR_RES), // the out signal from FIR Add
     .full(FIFO_Add_Full),
     .rd_clk(clock),
-    .rd_en(FIFO_Add_rd_en),
+    .rd_en(~FIFO_Add_Empty && ~Adddone),
     .dout(FIFO_Add_Out),
     .empty(FIFO_Add_Empty)
 ); 
@@ -315,12 +322,12 @@ fifo #(
     .din(BOTTOM_DEC_FIR_RES), // the out signal from FIR Sub
     .full(FIFO_Sub_Full),
     .rd_clk(clock),
-    .rd_en(FIFO_Sub_rd_en),
+    .rd_en(~FIFO_Sub_Empty && ~Subdone),
     .dout(FIFO_Sub_DOut),
     .empty(FIFO_Sub_Empty)
 ); 
 logic [DATA_WIDTH-1:0]AddSum, SubDiff;
-logic Adddone, Subdone;
+
 adder #(
     .DATA_WIDTH(DATA_WIDTH)
     ) add_inst (
@@ -341,19 +348,19 @@ subtractor #(
         .reset(reset),
         .out_rd_en(FIFO_Sub_rd_en),
         .dataAvailible(~FIFO_Sub_Empty),
-        .op1(FIFO_Add_DOut)// Placeholder for actual second subtrahend
+        .op1(FIFO_Add_DOut),// Placeholder for actual second subtrahend
         .op2(FIFO_Sub_DOut),
-        .difference(SubDiff),
+        .sum(SubDiff),
         .complete(Subdone)
     );
     // FIFO Out Left
 
 logic [DATA_WIDTH-1:0] Top_deemph_out, bottom_deemp_out;
 logic Top_deemph_done, Bottom_deemph_done;
-
+logic RightGainDone, LeftGainDone;
 IIR #(
     .TAP_COUNT(2),
-    .FB_TAP_COUNT(3),
+    .FB_TAP_COUNT(2),
     .DECIMATION_FACTOR(1),
     .MULT_PER_CYCLE(1),
     .DATA_WIDTH(32)
@@ -363,12 +370,14 @@ IIR #(
     .newData(Addsum),
     .newDataAvailable(Adddone),
     .filteredData(Top_deemph_out),
-    .done(Top_deemph_done)
+    .done(Top_deemph_done),
+    .in_rd_en(FIFO_Sub_rd_en),
+    .rd_en(~LeftGainDone)
 );
 
 IIR #(
     .TAP_COUNT(2),
-    .FB_TAP_COUNT(3),
+    .FB_TAP_COUNT(2),
     .DECIMATION_FACTOR(1),
     .MULT_PER_CYCLE(1),
     .DATA_WIDTH(32)
@@ -378,11 +387,13 @@ IIR #(
     .newData(SubDiff),
     .newDataAvailable(Subdone),
     .filteredData(bottom_deemp_out),
-    .done(Bottom_deemph_done)
+    .done(Bottom_deemph_done),
+    .in_rd_en(FIFO_Add_rd_en),
+    .rd_en(~RightGainDone)
 );
 
 logic [DATA_WIDTH - 1:0] LeftGainOut, RightGainOut;
-logic RightGainDone, LeftGainDone;
+
 multiplier #(
     .DATA_WIDTH(32)
 ) topGain (
@@ -397,7 +408,7 @@ multiplier #(
 );
 multiplier #(
     .DATA_WIDTH(32)
-) mergeMult (
+) mergeMult_inst (
     .clock(clock),
     .reset(reset),
     .out_rd_en(~FIFO_Right_Full),
