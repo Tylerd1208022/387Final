@@ -432,7 +432,7 @@ fifo #(
     .full(FIFO_Left_Full),
     .rd_clk(clock),
     .rd_en(out_rd_en),
-    .dout(FIFO_Left_DOut),
+    .dout(left_audio),
     .empty(FIFO_Left_Empty)
 ); 
     // Fifo Out Right
@@ -447,12 +447,11 @@ fifo #(
     .full(FIFO_Right_Full),
     .rd_clk(clock),
     .rd_en(out_rd_en),
-    .dout(FIFO_Right_DOut),
+    .dout(right_audio),
     .empty(FIFO_Right_Empty)
 ); 
 
-   
-    // Output assignment for left and right audio channels
+
   
 
 endmodule

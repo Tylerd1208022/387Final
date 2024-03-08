@@ -12,6 +12,7 @@ module arctan#(
 
     localparam FIRSTQUADRANT = 32'h00000324;
     localparam THIRDQUADRANT = 32'h0000096C;
+    localparam logic[31:0] QUANTVAL = 32'h00000400;
 
     logic division_overflow, division_complete,start_div;
     logic [DATA_WIDTH-1:0] divisor, dividend, quotient;
@@ -64,12 +65,12 @@ module arctan#(
         dividing: begin
             if (division_complete == 1'b1) begin
                 state_c = multiplying;
-                quotient_c = quotient * FIRSTQUADRANT;
+                quotient_c = quotient;// * FIRSTQUADRANT;
             end
         end
         multiplying: begin
             state_c = doneCalc;
-            quotient_c = $signed(quotient_s) / $signed(32'h00000400);
+            quotient_c = $signed(quotient_s) / $signed(QUANTVAL);
         end
         doneCalc: begin
             if ($signed(x) >= 0) begin

@@ -12,11 +12,14 @@ module iq_read #(
     output logic outputAvailible,
     output logic in_rd_en
 );
+
+
     typedef enum logic {read, write} readIQstate;
     readIQstate state_c, state_s;
     logic [DATA_WIDTH-1:0] i_data_out_c, q_data_out_c;
     logic [15:0] op1, op2;
     logic [31:0] SEop1, SEop2;
+    
     always_comb begin
         state_c = state_s;
         outputAvailible = 0;
@@ -46,17 +49,11 @@ module iq_read #(
                 in_rd_en = 1;
             end
         end
-        default: begin
-            outputAvailible = 0;
-            state_c = read;
-        end
         endcase
 
     end
 
-
-
-    always_ff @(posedge clock or negedge reset) begin
+    always_ff @(posedge clock or posedge reset) begin
         if (reset) begin
                 i_data_out <= 0;
                 q_data_out <= 0;
